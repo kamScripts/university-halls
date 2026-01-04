@@ -62,7 +62,3 @@
 
 **Project Parts Covered**
 
-- **Part 1**: Basic programmatic GUI  
-- **Part 2**: Class design (`Person`, `Student`, `Employee`, `Hall`, `Payment`, `Store`)  
-- **Part 3**: Save/load to/from text file  
-- **Part 4**: Enhanced features (e.g., needs-based hall assignment)
