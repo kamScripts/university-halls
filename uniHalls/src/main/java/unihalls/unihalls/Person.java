@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 
 /**
- *  TODO: IMPLEMENT toString()
+ *  
  * @author kg00k
  */
 public abstract class Person {
@@ -24,13 +24,23 @@ public abstract class Person {
         this.name = name;
         this.age = age;
         this.email = email;
-        this.gender = gender;        
+        this.gender = gender;
+        assignedRoom = null;
         createdAt = LocalDateTime.now();
         needsList = new HashSet<>();
     }
     @Override
     public String toString() {
-        return "";
+        return "Person{" +
+            "name='" + name + '\'' +
+            ", age=" + age +
+            ", email='" + email + '\'' +
+            ", gender=" + gender +
+            ", assignedRoom=" + (assignedRoom != null ? getAssignedRoom() : "None") +
+            ", createdAt=" + createdAt +
+            ", needsList=" + needsList +
+            '}';
+
     }
     public void addNeed(Facility [] needs) {
         Collections.addAll(needsList, needs);
