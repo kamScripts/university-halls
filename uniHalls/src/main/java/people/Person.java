@@ -1,17 +1,22 @@
-package unihalls.unihalls;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package people;
+import items.Facility;
+import items.Room;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import stores.PaymentList;
 
-/**
- *  
- * @author kg00k
+/**Abstract Base class for custom Residents of uniHalls
+ *
+ * @author Kamil Gebski
+ * @version 10th January 2026
  */
 public abstract class Person {
-/**
- * Abstract class, acting as base class for Halls Resident
- * 
- */
     private String name;
     private int age;
     private String email;
@@ -19,6 +24,7 @@ public abstract class Person {
     private Room assignedRoom;// Assigned room in Hall.
     private final LocalDateTime createdAt;// Account creation timestamp.
     private final HashSet<Facility> needsList;// Set of the resident's needs.
+    
 
     public Person(String name, int age, String email, Gender gender) {
         this.name = name;
@@ -27,8 +33,10 @@ public abstract class Person {
         this.gender = gender;
         assignedRoom = null;
         createdAt = LocalDateTime.now();
-        needsList = new HashSet<>();
+        needsList = new HashSet<>();        
+
     }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -38,7 +46,7 @@ public abstract class Person {
             ", gender=" + gender +
             ", assignedRoom=" + (assignedRoom != null ? getAssignedRoom() : "None") +
             ", createdAt=" + createdAt +
-            ", needsList=" + needsList +
+            ", needsList=" + needsList.toString() +
             '}';
 
     }
@@ -97,5 +105,5 @@ public abstract class Person {
     public void setAssignedRoom(Room assignedRoom) {
         this.assignedRoom = assignedRoom;
     }
-     
+
 }
