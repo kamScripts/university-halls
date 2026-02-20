@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/university-halls.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/ROOM_TYPE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/nbactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Facility.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/HALL_REQ.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Hall.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/NEEDS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/REQ_TYPE.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Room.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/testNeedsList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/j2/unihalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/j2/unihalls/SystemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/SystemInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Gender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Payment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/NeedsList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/PaymentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/Store.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/tests/testPaymentList.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="39AXfwsb32EDZyDEUeYcJPUYe2l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.testRoom.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kg00k/Documents/university-halls",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="uni.universityhalls.people" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="" />
+      <created>1770139956708</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770139956708</updated>
+      <workItem from="1770139958539" duration="59000" />
+      <workItem from="1770140025304" duration="2193000" />
+      <workItem from="1770298305342" duration="219000" />
+      <workItem from="1771586769111" duration="11899000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

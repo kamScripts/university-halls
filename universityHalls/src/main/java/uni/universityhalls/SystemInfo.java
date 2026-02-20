@@ -1,4 +1,4 @@
-package j2.unihalls;
+package uni.universityhalls;
 
 public class SystemInfo {
 

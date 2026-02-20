@@ -1,4 +1,4 @@
-package j2.unihalls;
+package uni.universityhalls;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
