@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"uni.universityhalls","l":"uni.universityhalls"},{"m":"uni.universityhalls","l":"uni.universityhalls.people"}];updateSearchResults();
