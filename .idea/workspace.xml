@@ -5,44 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/university-halls.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/ROOM_TYPE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/nbactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Facility.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/HALL_REQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Hall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/NEEDS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/REQ_TYPE.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/Room.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/items/testNeedsList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/j2/unihalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/j2/unihalls/SystemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/SystemInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Gender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Payment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/people/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/NeedsList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/PaymentList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/Store.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniHalls/src/main/java/stores/tests/testPaymentList.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/universityHalls/src/test/java/uni/universityhalls/RoomTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +26,7 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -70,30 +43,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.testRoom.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kg00k/Documents/university-halls",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.IntegrityTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.testRoom.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kg00k/Documents/university-halls&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.inline.completion&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="uni.universityhalls.people" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="uni.universityhalls" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="uni.universityhalls" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -114,7 +100,10 @@
       <workItem from="1770139958539" duration="59000" />
       <workItem from="1770140025304" duration="2193000" />
       <workItem from="1770298305342" duration="219000" />
-      <workItem from="1771586769111" duration="11899000" />
+      <workItem from="1771586769111" duration="17768000" />
+      <workItem from="1771604702495" duration="5640000" />
+      <workItem from="1771621436497" duration="842000" />
+      <workItem from="1771681984555" duration="6255000" />
     </task>
     <servers />
   </component>
