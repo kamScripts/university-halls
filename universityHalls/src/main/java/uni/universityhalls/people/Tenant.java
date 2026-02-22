@@ -10,6 +10,12 @@ public abstract class Tenant extends Person implements Comparable<Tenant>{
         super(name,age,email,gender);
         this.id = Integer.toString(id);
     }
+    protected Tenant (Tenant other) {
+        super(other);
+        id = other.getId();
+    }
+
+
 
     public String getId() {
         return id;

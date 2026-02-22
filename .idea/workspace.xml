@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/FEATURE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/ROOM_TYPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/ROOM_TYPE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +100,7 @@
       <workItem from="1771604702495" duration="5640000" />
       <workItem from="1771621436497" duration="842000" />
       <workItem from="1771681984555" duration="14915000" />
-      <workItem from="1771750743502" duration="460000" />
+      <workItem from="1771750743502" duration="3610000" />
     </task>
     <servers />
   </component>

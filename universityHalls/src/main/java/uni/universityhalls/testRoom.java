@@ -24,6 +24,10 @@ public class testRoom {
         r1.addTenant(st3.getId());
         System.out.println(s1.equals(s2));
         System.out.println(s1.equals(e1));
+        Room r2 = new Room(r1);
+        Room r3 = r1;
+        r2.removeTenant("200");
+        r3.removeTenant("11");
         System.out.println(r1);
 
     }

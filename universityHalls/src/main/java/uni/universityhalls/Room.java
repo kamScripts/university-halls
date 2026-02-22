@@ -36,6 +36,15 @@ public class Room {
         isFull = false;
         tenants = new ArrayList<>();
     }
+    public Room (Room other) {
+        roomNumber = other.roomNumber;
+        capacity = other.capacity;
+        cost = other.cost;
+        roomType = other.roomType;
+        isFull = other.isFull;
+        tenants =new ArrayList<>(other.tenants);
+
+    }
     @Override
     public String toString() {
         return String.format(
@@ -61,8 +70,8 @@ public class Room {
      * @return ArrayList of residents' student number
      */
     public List<String> getList() {
-        // return list of student no. of room residents.
-        return tenants;
+        // return list of student numbers of room residents.
+        return List.copyOf(tenants);
     }
 
     /** Adds new tenant to the room.

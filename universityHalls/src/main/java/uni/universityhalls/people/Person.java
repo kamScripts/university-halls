@@ -23,6 +23,14 @@ public abstract class Person {
         createdAt = LocalDateTime.now();
 
     }
+    protected Person(Person other) {
+        name = other.name;
+        age = other.age;
+        email = other.email;
+        gender = other.gender;
+        createdAt = other.createdAt;
+    }
+
 
     public String getName() {
         return name;

@@ -8,6 +8,10 @@ public class Student extends Tenant {
         super(name,age,email,gender, id);
 
     }
+    public Student (Student other) {
+        super(other);
+    }
+
     @Override
     public String toString() {
         return String.format(
