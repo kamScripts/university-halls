@@ -11,7 +11,7 @@ public class IntegrityTest {
         Hall h1 = new Hall("Hall_01");
         for(int i = 1; i<6;i++){
             for(int j = 0; j<16;j++){
-                h1.addRoom(new Room(i*100+j, 4, 400, ROOM_TYPE.STUDENT_MALE));
+                h1.addRoom(new Room(i*100+j, 4, 400, ROOM_TYPE.STUDENT));
             }
         }
         ArrayList<Room> rooms = h1.getRooms();
@@ -22,7 +22,7 @@ public class IntegrityTest {
                 String n = "s_"+i+"_"+j;
                 String e = n+"@gmail.com";
                 int id = i + j;
-                r.addTenant(new Student(n,19, e, Gender.FEMALE, id));
+                r.addTenant(Integer.toString(id));
                 j++;
 
             }

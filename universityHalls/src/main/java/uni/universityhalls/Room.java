@@ -1,70 +1,80 @@
 package uni.universityhalls;
-
-import uni.universityhalls.people.Person;
 import uni.universityhalls.people.Tenant;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /** Collection class to hold a list of tenants
  * @author Kamil Gebski
  * @version 20th Feb 2026
- * TODO: move Tennants storage to Main controller and create map tenant-room or
- * TODO: something like that and keep only list of Ids as reference inside Room.
+ * TODO: UPDATE JAVADOC
  */
 
 public class Room {
     private final int roomNumber;
-    private int beds;
+    private int capacity;
     private double cost;
-    private final Map<String, Tenant> tenants;
     private boolean isFull;
     private final ROOM_TYPE roomType;
-
+    private final List<String> tenants;
     /**
      * Creates a new Room instance with the specified room number, bed count,
      * monthly cost, and room type. Newly created rooms start with no tenants
      * and are marked as not full.
      *
      * @param roomNumber the unique identifier assigned to this room
-     * @param beds       the number of beds available in the room
+     * @param capacity       the number of capacity available in the room
      * @param cost       the nightly cost associated with booking the room
      * @param type       the {@link ROOM_TYPE} type of tenants (student/employee_gender)
      */
-    public Room(int roomNumber, int beds, double cost, ROOM_TYPE type) {
+    public Room(int roomNumber, int capacity, double cost, ROOM_TYPE type) {
         this.roomNumber = roomNumber;
-        this.beds = beds;
+        this.capacity = capacity;
         this.cost = cost;
-        tenants = new HashMap<>();
-        isFull = false;
         roomType = type;
-
+        isFull = false;
+        tenants = new ArrayList<>();
     }
     @Override
     public String toString() {
-        return Integer.toString(roomNumber);
+        return String.format(
+                "Room(roomNumber=%d, capacity= %d, cost=%f, roomType: %s, isFull= %s, tenants= %s",
+                getRoomNumber(), getcapacity(), getCost(), getRoomType(), isFull(), tenants.toString()
+        );
     }
 
-    /**Get list of tenants
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Room room = (Room) other;
+        return Objects.equals(getRoomNumber(), room.getRoomNumber());
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRoomNumber());
+    }
+
+    /**Get list of rooms
      *
-     * @return set of residents' student number
+     * @return ArrayList of residents' student number
      */
-    public Set<String> getList() {
+    public List<String> getList() {
         // return list of student no. of room residents.
-        return tenants.keySet();
+        return tenants;
     }
 
     /** Adds new tenant to the room.
      *
-     * @param person: new Tenant (Student/Employee)
+     * @param id: Tenant id
      * @return Returns true if tenant added successfully.
      */
-    public boolean addTenant(Tenant person) {
-        String id = person.getId();
+    public boolean addTenant(String id) {
+
         if (!isFull && !findStudent(id)) {
-            tenants.put(id, person);
-            isFull = tenants.size() >= beds; // update isFull flag when room is full.
+            tenants.add(id);
+            isFull = tenants.size() >= capacity; // update isFull flag when room is full.
             return true;
         }
         return false;
@@ -75,10 +85,10 @@ public class Room {
      * @param studentNumber: student ID
      * @return Returns true if student was removed successfully
      */
-    public boolean removeTenant(int studentNumber) {
+    public boolean removeTenant(String studentNumber) {
         if (findStudent(studentNumber)) {
             tenants.remove(studentNumber);
-            isFull = tenants.size() >= beds;
+            isFull = tenants.size() >= capacity;
             return true;
         }
         return false;
@@ -89,24 +99,16 @@ public class Room {
      * @param studentNumber: student ID
      * @return Returns true if tenant is on the list
      */
-    public boolean findStudent(int studentNumber) {
-        return tenants.containsKey(studentNumber);
+    public boolean findStudent(String studentNumber) {
+        return tenants.contains(studentNumber);
     }
 
-    /** Lookup method based on tenant name
-     *
-     * @param name: tenant name
-     * @return Returns true if tenant is on the list
+    /**
+     * Returns number of occupied capacity.
+     * @return current count of capacity taken.
      */
-    public boolean findStudent(String name) {
-        for(String key: tenants.keySet()) {
-            if (    // cast Person type to access getName method.
-                    ((Person) tenants.get(key)).getName().equals(name)
-            ) {
-                return true;
-            }
-        }
-        return false;
+    public int get_count() {
+        return tenants.size();
     }
 
     /**
@@ -120,12 +122,12 @@ public class Room {
     }
 
     /**
-     * Returns the maximum number of beds available in this room.
+     * Returns the maximum number of capacity available in this room.
      *
-     * @return number of beds
+     * @return number of capacity
      */
-    public int getBeds() {
-        return beds;
+    public int getcapacity() {
+        return capacity;
     }
 
     /**
@@ -156,11 +158,11 @@ public class Room {
     }
 
     /**
-     * sets a number of beds in a room
-     * @param beds: maximum numbers of tenants
+     * sets a number of capacity in a room
+     * @param capacity: maximum numbers of tenants
      */
-    public void setBeds(int beds) {
-        this.beds = beds;
+    public void setcapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     /**
@@ -170,4 +172,5 @@ public class Room {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
 }
