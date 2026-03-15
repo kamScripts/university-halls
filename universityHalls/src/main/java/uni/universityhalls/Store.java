@@ -46,7 +46,9 @@ public class Store {
         return false; // unknown tenant type
     }
     public void addTenant(Tenant tenant, String hall, String room) {
-
+        if (tenant == null){
+            throw new IllegalStateException("Tenant not found");
+        }
         String id = tenant.getId();
         String[] location = { hall, room };
         int roomNumber = Integer.parseInt(room);
@@ -77,7 +79,9 @@ public class Store {
     }
 
     public void removeTenant(Tenant tenant) {
-
+        if (tenant == null){
+            throw new IllegalStateException("Tenant not found");
+        }
         String id = tenant.getId();
         String[] location;
 
@@ -148,7 +152,9 @@ public class Store {
         }
         return results;
     }
-
+    public Hall getHall(String name) {
+        return halls.get(name);
+    }
 
 
 

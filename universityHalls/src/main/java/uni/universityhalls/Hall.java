@@ -12,12 +12,6 @@ public class Hall {
     private final List<FEATURE> features;
     private final Map<Integer,Room> rooms;
 
-    public Hall (int floors, int roomsPerFloor, String name, List<FEATURE> list) {
-        features = list;
-        rooms =new HashMap<>();
-
-    }
-
     public Hall (String nameIn) {
         name = nameIn;
         rooms = new HashMap<>();
@@ -57,6 +51,7 @@ public class Hall {
     public boolean addFeature(FEATURE feature) {
         return features.add(feature);
     }
+
     public boolean removeFeature(FEATURE feature) {
         return features.remove(feature);
     }
@@ -72,9 +67,5 @@ public class Hall {
     public void setName(String name) {
         this.name = name;
     }
-    public void standardHall() {
-
-    }
-
 
 }

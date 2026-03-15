@@ -57,8 +57,8 @@ public class Room {
     @Override
     public String toString() {
         return String.format(
-                "Room(roomNumber=%d, capacity= %d, cost=%.2f, roomType: %s, isFull= %s, tenants= %d)",
-                getRoomNumber(), getCapacity(), getCost(), getRoomType(), isFull(), tenants
+                "Room(roomNumber=%d, capacity= %d, cost=%.2f, roomType: %s, isFull= %s, tenants= %d, isGroundFloor= %s)",
+                getRoomNumber(), getCapacity(), getCost(), getRoomType(), isFull(), tenants, isGroundFloor
         );
     }
 
@@ -162,6 +162,9 @@ public class Room {
     }
     // Change Room type based on tenant type.
     private ROOM_TYPE typeFor(Tenant tenant) {
+        if (tenant == null) {
+            throw new IllegalStateException("Tenant not found");
+        }
         Gender g = tenant.getGender();
 
         if (tenant instanceof Student) {
