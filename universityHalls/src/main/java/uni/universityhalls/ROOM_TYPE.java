@@ -1,6 +1,12 @@
 package uni.universityhalls;
 
 public enum ROOM_TYPE {
-    STUDENT,
-    EMPLOYEE,
+    EMPTY,
+    STUDENT_MALE,
+    STUDENT_FEMALE,
+    STUDENT_MIX,
+    EMPLOYEE_MALE,
+    EMPLOYEE_FEMALE,
+    EMPLOYEE_MIX,
+
 }

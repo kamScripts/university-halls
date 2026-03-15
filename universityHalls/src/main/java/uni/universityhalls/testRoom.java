@@ -6,7 +6,7 @@ import uni.universityhalls.people.Student;
 
 public class testRoom {
     public static void main (String[] args) {
-        Room r1 = new Room(1,3,300, ROOM_TYPE.STUDENT);
+        Room r1 = new Room(1,3,300, ROOM_TYPE.STUDENT_MALE);
         Student st1 =(new Student("Kam", 20, "Kam@uni.edu", Gender.MALE,200 ));
         Student st2 =(new Student("John", 20, "Kama@uni.edu", Gender.MALE,121 ));
         Student st3 =(new Student("Jon", 20, "Kama@uni.edu", Gender.MALE,11 ));

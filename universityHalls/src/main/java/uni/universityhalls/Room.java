@@ -16,7 +16,8 @@ public class Room {
     private int capacity;
     private double cost;
     private boolean isFull;
-    private final ROOM_TYPE roomType;
+    private boolean isGroundFloor;
+    private ROOM_TYPE roomType;
     private final List<String> tenants;
     /**
      * Creates a new Room instance with the specified room number, bed count,
@@ -34,8 +35,14 @@ public class Room {
         this.cost = cost;
         roomType = type;
         isFull = false;
+        isGroundFloor = false;
         tenants = new ArrayList<>();
     }
+
+    /** Copy Constructor
+     *
+     * @param other: Room object
+     */
     public Room (Room other) {
         roomNumber = other.roomNumber;
         capacity = other.capacity;
@@ -48,7 +55,7 @@ public class Room {
     @Override
     public String toString() {
         return String.format(
-                "Room(roomNumber=%d, capacity= %d, cost=%f, roomType: %s, isFull= %s, tenants= %s",
+                "Room(roomNumber=%d, capacity= %d, cost=%.2f, roomType: %s, isFull= %s, tenants= %s)",
                 getRoomNumber(), getcapacity(), getCost(), getRoomType(), isFull(), tenants.toString()
         );
     }
@@ -157,6 +164,10 @@ public class Room {
         return isFull;
     }
 
+    public boolean onGroundFloor() {
+        return isGroundFloor;
+    }
+
     /**
      * Returns the type of this room (Student/Employee -gender).
      *
@@ -165,7 +176,9 @@ public class Room {
     public ROOM_TYPE getRoomType() {
         return roomType;
     }
-
+    public void setRoomType(ROOM_TYPE type) {
+        roomType = type;
+    }
     /**
      * sets a number of capacity in a room
      * @param capacity: maximum numbers of tenants
@@ -180,6 +193,10 @@ public class Room {
      */
     public void setCost(double cost) {
         this.cost = cost;
+    }
+    public void clearRoom() {
+        tenants.clear();
+        isFull = false;
     }
 
 }
