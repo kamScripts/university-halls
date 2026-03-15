@@ -1,7 +1,9 @@
 package uni.universityhalls;
 
 import uni.universityhalls.people.Employee;
+import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
+import uni.universityhalls.people.Tenant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,23 +25,99 @@ public class Store {
         halls.put(h.getName(), h);
     }
 
-    public void addTenant(Student student,String hall, String room) {
-        String id = student.getId();
-        String [] location = {hall, room};
+    private boolean registerTenant(Tenant tenant, String id, String[] location) {
 
-        if (!studentsRegister.containsKey(id)) {
-            studentsRegister.put(id,student);
+        if (tenant instanceof Student) {
+            if (studentsRegister.containsKey(id)) return false;
+
+            studentsRegister.put(id, (Student) tenant);
             studentToRoomMapping.put(id, location);
+            return true;
+        }
+
+        if (tenant instanceof Employee) {
+            if (uniEmployeesRegister.containsKey(id)) return false;
+
+            uniEmployeesRegister.put(id, (Employee) tenant);
+            empToRoomMapping.put(id, location);
+            return true;
+        }
+
+        return false; // unknown tenant type
+    }
+    public void addTenant(Tenant tenant, String hall, String room) {
+
+        String id = tenant.getId();
+        String[] location = { hall, room };
+        int roomNumber = Integer.parseInt(room);
+
+        Hall h = halls.get(hall);
+        if (h == null) {
+            throw new IllegalArgumentException("Hall does not exist: " + hall);
+        }
+
+        Room r = h.getRoom(roomNumber);
+        if (r == null) {
+            throw new IllegalArgumentException("Room does not exist: " + room);
+        }
+
+        if (r.isFull()) {
+            throw new IllegalStateException("Room is full: " + room);
+        }
+
+        boolean success = registerTenant(tenant, id, location);
+
+        if (success) {
+            r.addTenant();
+
+            if (r.getRoomType() == ROOM_TYPE.EMPTY) {
+                r.decideRoomType(tenant);
+            }
         }
     }
-    public void addTenant(Employee emp, String hall, String room) {
-        String id = emp.getId();
-        String [] location = {hall, room};
 
-        if (!studentsRegister.containsKey(id)) {
-            uniEmployeesRegister.put(id,emp);
-            empToRoomMapping.put(id, location);
+    public void removeTenant(Tenant tenant) {
+
+        String id = tenant.getId();
+        String[] location;
+
+        if (tenant instanceof Student) {
+
+            location = studentToRoomMapping.get(id);
+            if (location == null) {
+                throw new IllegalStateException("Student mapping not found for id: " + id);
+            }
+
+            studentsRegister.remove(id);
+            studentToRoomMapping.remove(id);
+
+        } else if (tenant instanceof Employee) {
+
+            location = empToRoomMapping.get(id);
+            if (location == null) {
+                throw new IllegalStateException("Employee mapping not found for id: " + id);
+            }
+
+            uniEmployeesRegister.remove(id);
+            empToRoomMapping.remove(id);
+
+        } else {
+            throw new IllegalArgumentException("Unknown tenant type: " + tenant.getClass());
         }
+
+        String hall = location[0];
+        String room = location[1];
+
+        Room r = halls.get(hall).getRoom(Integer.parseInt(room));
+        r.removeTenant();
+    }
+
+
+    public Student findStudent(String id) {
+        return studentsRegister.getOrDefault(id, null);
+    }
+    public Employee findTenant(String id, Boolean isEmp) {
+        return uniEmployeesRegister.getOrDefault(id, null);
     }
 
     public Map<String, List<Room>> findRoom(List<FEATURE> requested,ROOM_TYPE roomType, boolean groundFloor) {
@@ -60,7 +138,11 @@ public class Store {
                 // 2. First floor requirement
                 Room roomCandidate = hall.getRoom(r);
                 if (groundFloor && !roomCandidate.onGroundFloor()) continue;
-                if (!roomCandidate.isFull() && (roomCandidate.getRoomType() == roomType)) matches.add(roomCandidate);
+                if (!roomCandidate.isFull() &&
+                        (
+                                roomCandidate.getRoomType() == ROOM_TYPE.EMPTY ||
+                                roomCandidate.getRoomType() == roomType
+                        )) matches.add(roomCandidate);
             }
             if (!matches.isEmpty()) results.put(hallName, matches);
         }
