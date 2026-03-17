@@ -57,10 +57,11 @@ public class IntegrityTest {
         // to match only appropriate  room type, and if it needs to be ground floor room.
         Map<String, List<Room>> vacantRooms = controller.findRoom(features, ROOM_TYPE.STUDENT_FEMALE, false);
         System.out.println(vacantRooms.get("hall01"));
+        // Test Object Serialisation
         String filepath = "store.dat";
         controller.save(filepath);
         Store store_test = Store.load(filepath);
-
+        
         Hall h_test = store_test.getHall("hall01");
         System.out.println(h_test.getRoomsNumbers());
 

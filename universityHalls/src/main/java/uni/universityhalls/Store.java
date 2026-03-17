@@ -126,6 +126,13 @@ public class Store implements Serializable {
         return uniEmployeesRegister.getOrDefault(id, null);
     }
 
+    /**Finds a selection of available based on criteria like hall's features, room type, or ground floor laction
+     *
+     * @param requested: List<FEATURE> - Enum also property of Hall class.
+     * @param roomType: ROOM_TYPE - Enum
+     * @param groundFloor: boolean Room Class flag.
+     * @return Map: key=Hall, value=List
+     */
     public Map<String, List<Room>> findRoom(List<FEATURE> requested,ROOM_TYPE roomType, boolean groundFloor) {
 
         Map<String, List<Room>> results = new HashMap<>();
@@ -158,40 +165,49 @@ public class Store implements Serializable {
         return halls.get(name);
     }
     protected void save(String file) {
-        try(
-                FileOutputStream storeFile = new FileOutputStream(file);
-                ObjectOutputStream storeStream = new ObjectOutputStream(storeFile);
+        File f = new File(file);
+        System.out.println("Saving to: " + f.getAbsolutePath());
+
+        try (
+                FileOutputStream storeFile = new FileOutputStream(f);
+                ObjectOutputStream storeStream = new ObjectOutputStream(storeFile)
         ) {
             storeStream.writeObject(this);
             System.out.println("Object saved successfully!");
         } catch (IOException e) {
             System.out.println("Problem occurred while writing operation");
+            e.printStackTrace();
         }
     }
+
     public static Store load(String file) {
-        Store store = null;
+        File f = new File(file);
+        System.out.println("Loading from: " + f.getAbsolutePath());
 
-        try(
-                FileInputStream storeFile = new FileInputStream(file);
+        try (
+                FileInputStream storeFile = new FileInputStream(f);
+                ObjectInputStream storeStream = new ObjectInputStream(storeFile)
+        ) {
+            return (Store) storeStream.readObject();
 
-                ObjectInputStream storeStream = new ObjectInputStream(storeFile);
-                ){
-            try {
-                store = (Store) storeStream.readObject();
-
-            } catch(EOFException e) {
-                System.out.println("End of file");
-            }
         } catch (FileNotFoundException e) {
-            System.out.println("\nFile not found");
+            System.out.println("File not found: " + f.getAbsolutePath());
+            e.printStackTrace();
+
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Class mismatch while reading file");
+            e.printStackTrace();
+
         } catch (StreamCorruptedException e) {
-            System.out.println("Unreadable file");
+            System.out.println("Unreadable or corrupted file");
+            e.printStackTrace();
+
         } catch (IOException e) {
             System.out.println("Problem occurred while reading operation");
+            e.printStackTrace();
         }
-        return store;
+
+        return null;
     }
 
 

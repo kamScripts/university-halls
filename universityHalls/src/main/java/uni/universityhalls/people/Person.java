@@ -1,5 +1,6 @@
 package uni.universityhalls.people;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Kamil Gebski
  * @version 10/01/26
  */
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String name;
     private int age;
     private String email;

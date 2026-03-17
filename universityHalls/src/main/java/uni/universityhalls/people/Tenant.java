@@ -1,8 +1,9 @@
 package uni.universityhalls.people;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Tenant extends Person implements Comparable<Tenant>{
+public abstract class Tenant extends Person implements Comparable<Tenant>, Serializable {
 
     private final String id;
 
