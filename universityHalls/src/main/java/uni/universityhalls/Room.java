@@ -4,15 +4,18 @@ import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
 import uni.universityhalls.people.Tenant;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /** Collection class to hold a list of tenants
- * @author Kamil Gebski
+ * @author KG
  * @version 20th Feb 2026
  * TODO: UPDATE JAVADOC
  */
 
-public class Room {
+public class Room implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final int roomNumber;
     private int capacity;
     private double cost;

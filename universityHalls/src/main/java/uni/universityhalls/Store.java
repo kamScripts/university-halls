@@ -5,16 +5,18 @@ import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
 import uni.universityhalls.people.Tenant;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Controller class that creates halls ,finds accommodation for new tenants
- * add,edit and delete data.
- *
+/** Controller class that creates halls ,finds accommodation for new tenants * add,edit and delete data.
+ * TODO: apply Dirty Flag pattern to determine changes made to trigger  Object serialisation.
  */
-public class Store {
+public class Store implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final Map<String, Hall> halls = new HashMap<>();
     private final Map<String, Student> studentsRegister = new HashMap<>();
     private final Map<String, Employee> uniEmployeesRegister = new HashMap<>();
@@ -154,6 +156,42 @@ public class Store {
     }
     public Hall getHall(String name) {
         return halls.get(name);
+    }
+    protected void save(String file) {
+        try(
+                FileOutputStream storeFile = new FileOutputStream(file);
+                ObjectOutputStream storeStream = new ObjectOutputStream(storeFile);
+        ) {
+            storeStream.writeObject(this);
+            System.out.println("Object saved successfully!");
+        } catch (IOException e) {
+            System.out.println("Problem occurred while writing operation");
+        }
+    }
+    public static Store load(String file) {
+        Store store = null;
+
+        try(
+                FileInputStream storeFile = new FileInputStream(file);
+
+                ObjectInputStream storeStream = new ObjectInputStream(storeFile);
+                ){
+            try {
+                store = (Store) storeStream.readObject();
+
+            } catch(EOFException e) {
+                System.out.println("End of file");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("\nFile not found");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (StreamCorruptedException e) {
+            System.out.println("Unreadable file");
+        } catch (IOException e) {
+            System.out.println("Problem occurred while reading operation");
+        }
+        return store;
     }
 
 

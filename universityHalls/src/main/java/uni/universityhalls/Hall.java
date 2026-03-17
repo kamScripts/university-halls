@@ -1,5 +1,6 @@
 package uni.universityhalls;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -7,7 +8,9 @@ import java.util.*;
  * by find best matching hall
  */
 
-public class Hall {
+public class Hall implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private final List<FEATURE> features;
     private final Map<Integer,Room> rooms;

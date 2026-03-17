@@ -9,10 +9,12 @@ import java.util.*;
 
 public class IntegrityTest {
     public static void main (String [] args) {
-
+        //Create Store to hold halls tenants
         Store controller = new Store();
+        // Each store - different features and set of rooms
         Hall h1 =new Hall("hall01");
         Hall h2 =new Hall("hall02");
+        //Create set of rooms and assign type Empty
         double roomCost = 400.00;
         for (int i = 1; i<=30;i++) {
             if (i<10) {
@@ -25,6 +27,8 @@ public class IntegrityTest {
         controller.addHall(h2);
         Set<Integer> rooms = h1.getRoomsNumbers();
         int ids = 1;
+        // Assign test set of students to rooms, as a first tenant is  added room type is changed
+        // to tenants type tenantType_(gender || mix)
         for (int r : rooms) {
             Room room = h1.getRoom(r);
             String roomNumber = Integer.toString(r);
@@ -49,8 +53,18 @@ public class IntegrityTest {
         System.out.println("Search student with id=1: (after removal tenant)"+searchResult2);
         System.out.println("Room 1 isFull: "+h1.getRoom(1).isFull());
         List<FEATURE> features = new ArrayList<>();
+        // findRoom searches for vacant rooms across all halls based on hall features and type of tenant
+        // to match only appropriate  room type, and if it needs to be ground floor room.
         Map<String, List<Room>> vacantRooms = controller.findRoom(features, ROOM_TYPE.STUDENT_FEMALE, false);
         System.out.println(vacantRooms.get("hall01"));
+        String filepath = "store.dat";
+        controller.save(filepath);
+        Store store_test = Store.load(filepath);
+
+        Hall h_test = store_test.getHall("hall01");
+        System.out.println(h_test.getRoomsNumbers());
+
+
 
 
     }
