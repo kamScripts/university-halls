@@ -176,7 +176,7 @@ public class Room implements Serializable {
                     return ROOM_TYPE.STUDENT_FEMALE;
                 case MALE:
                     return ROOM_TYPE.STUDENT_MALE;
-                case NON_BINARY:
+                case NONBINARY:
                     return ROOM_TYPE.STUDENT_NONBINARY;
                 default:
                     return ROOM_TYPE.EMPTY;
@@ -189,7 +189,7 @@ public class Room implements Serializable {
                     return ROOM_TYPE.EMPLOYEE_FEMALE;
                 case MALE:
                     return ROOM_TYPE.EMPLOYEE_MALE;
-                case NON_BINARY:
+                case NONBINARY:
                     return ROOM_TYPE.EMPLOYEE_NONBINARY;
                 default:
                     return ROOM_TYPE.EMPTY;

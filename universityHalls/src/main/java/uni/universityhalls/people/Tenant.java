@@ -1,5 +1,7 @@
 package uni.universityhalls.people;
 
+import uni.universityhalls.ROOM_TYPE;
+
 import java.util.Objects;
 
 public abstract class Tenant extends Person implements Comparable<Tenant>{
@@ -15,8 +17,7 @@ public abstract class Tenant extends Person implements Comparable<Tenant>{
         id = other.getId();
     }
 
-
-
+    public abstract ROOM_TYPE prefferedRoomType();
     public String getId() {
         return id;
     }

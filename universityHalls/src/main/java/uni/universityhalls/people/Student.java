@@ -1,5 +1,7 @@
 package uni.universityhalls.people;
 
+import uni.universityhalls.ROOM_TYPE;
+
 public class Student extends Tenant {
     private static final long serialVersionUID = 1L;
 
@@ -9,6 +11,21 @@ public class Student extends Tenant {
     }
     public Student (Student other) {
         super(other);
+    }
+    @Override
+    public ROOM_TYPE prefferedRoomType() {
+        ROOM_TYPE result;
+        switch( getGender()){
+            case FEMALE: result = ROOM_TYPE.STUDENT_FEMALE;
+                break;
+            case MALE: result = ROOM_TYPE.STUDENT_MALE;
+                break;
+            case NONBINARY: result = ROOM_TYPE.STUDENT_NONBINARY;
+                break;
+            default: result = ROOM_TYPE.EMPTY;
+                break;
+        }
+        return result;
     }
 
     @Override
