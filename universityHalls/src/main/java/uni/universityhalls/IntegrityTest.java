@@ -61,7 +61,7 @@ public class IntegrityTest {
         String filepath = "store.dat";
         controller.save(filepath);
         Store store_test = Store.load(filepath);
-        
+
         Hall h_test = store_test.getHall("hall01");
         System.out.println(h_test.getRoomsNumbers());
 

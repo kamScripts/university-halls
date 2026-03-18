@@ -1,9 +1,6 @@
 package uni.universityhalls.people;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-public class Student extends Tenant implements Serializable {
+public class Student extends Tenant {
     private static final long serialVersionUID = 1L;
 
     public Student (String name, int age, String email, Gender gender, int id){

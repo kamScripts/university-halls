@@ -1,9 +1,8 @@
 package uni.universityhalls.people;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Employee extends Tenant implements Serializable {
+
+public class Employee extends Tenant{
     private static final long serialVersionUID = 1L;
     public Employee (String name, int age, String email, Gender gender, int id){
         super(name,age,email,gender, id);
