@@ -1,9 +1,6 @@
 package uni.universityhalls;
-import uni.universityhalls.people.Employee;
-import uni.universityhalls.people.Gender;
-import uni.universityhalls.people.Student;
-import uni.universityhalls.people.Tenant;
 
+import uni.universityhalls.people.Tenant;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,8 +16,7 @@ public class Room implements Serializable {
     private final int roomNumber;
     private int capacity;
     private double cost;
-    private boolean isFull;
-    private boolean isGroundFloor;
+    private final boolean isGroundFloor;
     private ROOM_TYPE roomType;
     private int tenants;
     /**
@@ -31,16 +27,16 @@ public class Room implements Serializable {
      * @param roomNumber the unique identifier assigned to this room
      * @param capacity       the number of capacity available in the room
      * @param cost       the nightly cost associated with booking the room
-     * @param type       the {@link ROOM_TYPE} type of tenants (student/employee_gender)
+     * @param roomType       the {@link ROOM_TYPE} type of tenants (student/employee_gender)
+     * @param isGroundFloor ground-floor flag
      */
-    public Room(int roomNumber, int capacity, double cost, ROOM_TYPE type, Boolean groundFloor) {
+    public Room(int roomNumber, int capacity, double cost, ROOM_TYPE roomType, boolean isGroundFloor) {
         this.roomNumber = roomNumber;
         this.capacity = capacity;
         this.cost = cost;
-        roomType = type;
-        isFull = false;
-        isGroundFloor = groundFloor;
-        tenants = 0;
+        this.roomType = roomType;
+        this.isGroundFloor = isGroundFloor;
+        this.tenants = 0;
     }
 
     /** Copy Constructor
@@ -52,7 +48,6 @@ public class Room implements Serializable {
         this.capacity = other.capacity;
         this.cost = other.cost;
         this.roomType = other.roomType;
-        this.isFull = other.isFull;
         this.isGroundFloor = other.isGroundFloor;
         this.tenants = other.tenants;
     }
@@ -77,20 +72,14 @@ public class Room implements Serializable {
         return Objects.hash(getRoomNumber());
     }
 
-
-
     /** Adds new tenant to the room.
      *
      */
     public void addTenant() {
-        if (tenants < capacity) {
+        if (!isFull()) {
             tenants++;
-            isFull = tenants == capacity;
         }
     }
-
-
-
     /**Removes tenant from the list and update isFull flag
      *
      *
@@ -98,11 +87,9 @@ public class Room implements Serializable {
     public void removeTenant() {
         if (tenants > 0) {
             tenants--;
-            isFull = tenants == capacity;
+
         }
     }
-
-
     /**
      * Returns number of occupied capacity.
      * @return current count of capacity taken.
@@ -110,7 +97,6 @@ public class Room implements Serializable {
     public int getCount() {
         return tenants;
     }
-
     /**
      * Returns the room number assigned to this room.
      *
@@ -145,7 +131,7 @@ public class Room implements Serializable {
      * @return true if the room is full, false otherwise
      */
     public boolean isFull() {
-        return isFull;
+        return tenants>=capacity;
     }
 
     public boolean onGroundFloor() {
@@ -164,42 +150,9 @@ public class Room implements Serializable {
         roomType = type;
     }
     // Change Room type based on tenant type.
-    private ROOM_TYPE typeFor(Tenant tenant) {
-        if (tenant == null) {
-            throw new IllegalStateException("Tenant not found");
-        }
-        Gender g = tenant.getGender();
 
-        if (tenant instanceof Student) {
-            switch (g) {
-                case FEMALE:
-                    return ROOM_TYPE.STUDENT_FEMALE;
-                case MALE:
-                    return ROOM_TYPE.STUDENT_MALE;
-                case NONBINARY:
-                    return ROOM_TYPE.STUDENT_NONBINARY;
-                default:
-                    return ROOM_TYPE.EMPTY;
-            }
-        }
-
-        if (tenant instanceof Employee) {
-            switch (g) {
-                case FEMALE:
-                    return ROOM_TYPE.EMPLOYEE_FEMALE;
-                case MALE:
-                    return ROOM_TYPE.EMPLOYEE_MALE;
-                case NONBINARY:
-                    return ROOM_TYPE.EMPLOYEE_NONBINARY;
-                default:
-                    return ROOM_TYPE.EMPTY;
-            }
-        }
-
-        return ROOM_TYPE.EMPTY;
-    }
     public void decideRoomType(Tenant tenant) {
-        setRoomType(typeFor(tenant));
+        setRoomType(tenant.prefferedRoomType());
     }
 
     /**
@@ -219,7 +172,7 @@ public class Room implements Serializable {
     }
     public void clearRoom() {
         tenants = 0;
-        isFull = false;
+        roomType = ROOM_TYPE.EMPTY;
     }
 
 }
