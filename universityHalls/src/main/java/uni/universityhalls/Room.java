@@ -13,27 +13,25 @@ import java.util.Objects;
 public class Room implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private final int roomNumber;
+    private final String roomNumber;
     private int capacity;
-    private double cost;
     private final boolean isGroundFloor;
     private ROOM_TYPE roomType;
     private int tenants;
     /**
      * Creates a new Room instance with the specified room number, bed count,
-     * monthly cost, and room type. Newly created rooms start with no tenants
+     * and room type. Newly created rooms start with no tenants
      * and are marked as not full.
      *
      * @param roomNumber the unique identifier assigned to this room
      * @param capacity       the number of capacity available in the room
-     * @param cost       the nightly cost associated with booking the room
      * @param roomType       the {@link ROOM_TYPE} type of tenants (student/employee_gender)
      * @param isGroundFloor ground-floor flag
      */
-    public Room(int roomNumber, int capacity, double cost, ROOM_TYPE roomType, boolean isGroundFloor) {
+    public Room(String roomNumber, int capacity,  ROOM_TYPE roomType, boolean isGroundFloor) {
         this.roomNumber = roomNumber;
         this.capacity = capacity;
-        this.cost = cost;
+        
         this.roomType = roomType;
         this.isGroundFloor = isGroundFloor;
         this.tenants = 0;
@@ -46,7 +44,7 @@ public class Room implements Serializable {
     public Room(Room other) {
         this.roomNumber = other.roomNumber;
         this.capacity = other.capacity;
-        this.cost = other.cost;
+        
         this.roomType = other.roomType;
         this.isGroundFloor = other.isGroundFloor;
         this.tenants = other.tenants;
@@ -55,8 +53,8 @@ public class Room implements Serializable {
     @Override
     public String toString() {
         return String.format(
-                "Room(roomNumber=%d, capacity= %d, cost=%.2f, roomType: %s, isFull= %s, tenants= %d, isGroundFloor= %s)",
-                getRoomNumber(), getCapacity(), getCost(), getRoomType(), isFull(), tenants, isGroundFloor
+                "Room(roomNumber=%s, capacity= %d, roomType: %s, isFull= %s, tenants= %d, isGroundFloor= %s)",
+                getRoomNumber(), getCapacity(), getRoomType(), isFull(), tenants, isGroundFloor
         );
     }
 
@@ -65,7 +63,7 @@ public class Room implements Serializable {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         Room room = (Room) other;
-        return this.roomNumber == room.roomNumber;
+        return roomNumber.equals(room.getRoomNumber());
     }
     @Override
     public int hashCode() {
@@ -76,19 +74,14 @@ public class Room implements Serializable {
      *
      */
     public void addTenant() {
-        if (!isFull()) {
-            tenants++;
-        }
+        if (!isFull()) tenants+=1;
     }
     /**Removes tenant from the list and update isFull flag
      *
      *
      */
     public void removeTenant() {
-        if (tenants > 0) {
-            tenants--;
-
-        }
+        if (tenants>0)  tenants-= 1;
     }
     /**
      * Returns number of occupied capacity.
@@ -103,7 +96,7 @@ public class Room implements Serializable {
      * @return the room number
      */
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
@@ -114,15 +107,6 @@ public class Room implements Serializable {
      */
     public int getCapacity() {
         return capacity;
-    }
-
-    /**
-     * Returns the cost associated with renting this room.
-     *
-     * @return room cost
-     */
-    public double getCost() {
-        return cost;
     }
 
     /**
@@ -152,7 +136,7 @@ public class Room implements Serializable {
     // Change Room type based on tenant type.
 
     public void decideRoomType(Tenant tenant) {
-        setRoomType(tenant.prefferedRoomType());
+        setRoomType(tenant.preferredRoomType());
     }
 
     /**
@@ -163,13 +147,6 @@ public class Room implements Serializable {
         this.capacity = capacity;
     }
 
-    /**
-     * sets a cost of a room
-     * @param cost: new cost
-     */
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
     public void clearRoom() {
         tenants = 0;
         roomType = ROOM_TYPE.EMPTY;

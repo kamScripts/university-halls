@@ -1,72 +1,49 @@
 package uni.universityhalls;
 
-import uni.universityhalls.people.Employee;
+
 import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
+
 
 import java.util.*;
 
 
 public class IntegrityTest {
     public static void main (String [] args) {
+        String hallName = "hall01";
+        List<FEATURE> requirements = new ArrayList<>();
+
+/*
         //Create Store to hold halls tenants
-        Store controller = new Store();
+        Store store = new Store();
+
         // Each store - different features and set of rooms
-        Hall h1 =new Hall("hall01");
-        Hall h2 =new Hall("hall02");
-        //Create set of rooms and assign type Empty
-        double roomCost = 400.00;
-        for (int i = 1; i<=30;i++) {
-            if (i<10) {
-                Room r1 = new Room(i, 4, roomCost, ROOM_TYPE.EMPTY, true);
-                h1.addRoom(r1);
-            }
-            if (i>=10) h1.addRoom(new Room(i, 4, roomCost, ROOM_TYPE.EMPTY, false));
-        }
-        controller.addHall(h1);
-        controller.addHall(h2);
-        Set<Integer> rooms = h1.getRoomsNumbers();
-        int ids = 1;
-        // Assign test set of students to rooms, as a first tenant is  added room type is changed
-        // to tenants type tenantType_(gender || mix)
-        for (int r : rooms) {
-            Room room = h1.getRoom(r);
-            String roomNumber = Integer.toString(r);
-            while (!room.isFull()) {
-                String studentName = "student" + ids;
-                String studentEmail = studentName + "@edu.ucen.ac.uk";
-                Student s = new Student(studentName,20, studentEmail, Gender.FEMALE,ids);
-                controller.addTenant(s,"hall01",roomNumber);
-                ids++;
-            }
-        }
+        Hall h1 =new Hall(hallName);
+        h1.addRoom(new Room("1",2, 100, ROOM_TYPE.EMPTY, true));
+        h1.addRoom(new Room("2",2, 100, ROOM_TYPE.EMPTY, false));
+        store.addHall(h1);
+        //System.out.println(store.getHall("hall01"));// Add hall with rooms.
+        Student s1 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"1");
+        Student s2 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"2");
+        Student s3 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"3");
+        Student s4 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"4");
 
-        Student searchResult = controller.findStudent("1");
-        Student rmStudent = controller.findStudent("40");
-        Student rmStudent2 = controller.findStudent("39");
-        System.out.println("Search student with id=1: "+searchResult);
-        System.out.println("Room 1 isFull:"+h1.getRoom(1).isFull());
-        controller.removeTenant(searchResult);
-        controller.removeTenant(rmStudent);
-        controller.removeTenant(rmStudent2);
-        Student searchResult2 = controller.findStudent("1");
-        System.out.println("Search student with id=1: (after removal tenant)"+searchResult2);
-        System.out.println("Room 1 isFull: "+h1.getRoom(1).isFull());
-        List<FEATURE> features = new ArrayList<>();
-        // findRoom searches for vacant rooms across all halls based on hall features and type of tenant
-        // to match only appropriate  room type, and if it needs to be ground floor room.
-        Map<String, List<Room>> vacantRooms = controller.findRoom(features, ROOM_TYPE.STUDENT_FEMALE, false);
-        System.out.println(vacantRooms.get("hall01"));
-        // Test Object Serialisation
-        String filepath = "store.dat";
-        controller.save(filepath);
-        Store store_test = Store.load(filepath);
-
-        Hall h_test = store_test.getHall("hall01");
-        System.out.println(h_test.getRoomsNumbers());
-
-
-
+        store.addTenant(s1, hallName, "1");
+        store.addTenant(s2, hallName, "1");
+        store.addTenant(s3, hallName, "2");
+        store.addTenant(s4, hallName, "2");
+        Map<String, Set<String>> m = store.findRoom(requirements,s1.preferredRoomType(),true);
+        System.out.println("findRoom room full: "+m.get(hallName));
+        store.removeTenant("1");
+        m = store.findRoom(requirements,s1.preferredRoomType(),true);
+        System.out.println("findRoom room not-full: "+m.get(hallName));
+        StoreRepository.save(store, "store1.dat");
+*/
+        Store store = StoreRepository.load("store1.dat");
+        //requirements.add(FEATURE.ALL_DAY_ASSISTANCE);
+        Map<String, Set<String>>freeRooms=store.findRoom(requirements, ROOM_TYPE.EMPLOYEE_FEMALE, false);
+        System.out.println(freeRooms.get(hallName));
+        Room r = store.getHall(hallName).getRoom("4");
 
     }
 }

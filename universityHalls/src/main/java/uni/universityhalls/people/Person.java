@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
  * @version 10/01/26
  */
 public abstract class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private final int age;
     private final String email;

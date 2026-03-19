@@ -5,7 +5,7 @@ import uni.universityhalls.ROOM_TYPE;
 public class Student extends Tenant {
     private static final long serialVersionUID = 1L;
 
-    public Student (String name, int age, String email, Gender gender, int id){
+    public Student (String name, int age, String email, Gender gender, String id){
         super(name,age,email,gender, id);
 
     }
@@ -13,7 +13,7 @@ public class Student extends Tenant {
         super(other);
     }
     @Override
-    public ROOM_TYPE prefferedRoomType() {
+    public ROOM_TYPE preferredRoomType() {
         ROOM_TYPE result;
         switch( getGender()){
             case FEMALE: result = ROOM_TYPE.STUDENT_FEMALE;

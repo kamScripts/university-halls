@@ -11,14 +11,14 @@ import java.util.*;
 public class Hall implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String name;
-    private final List<FEATURE> features;
-    private final Map<Integer,Room> rooms;
+    private final String name;
+    private final Set<FEATURE> features;
+    private final Map<String,Room> rooms;
 
     public Hall (String nameIn) {
         name = nameIn;
         rooms = new HashMap<>();
-        features = new ArrayList<>();
+        features = new HashSet<>();
     }
 
     /**
@@ -27,27 +27,41 @@ public class Hall implements Serializable {
      */
     public Hall (Hall other) {
         name = other.name;
-        features = new ArrayList<>(other.features);
+        features = new HashSet<>(other.features);
         rooms = new HashMap<>();
         other.rooms.forEach((key,val)-> rooms.put(key, new Room(val)));
     }
-    public Map<Integer,Room> findAvailableRooms(ROOM_TYPE type){
-        Map<Integer,Room> freeRooms = new HashMap<>();
-        rooms.forEach((num, room)-> {
-            if (!room.isFull() && room.getRoomType() == type) freeRooms.put(num,new Room(room));
-        });
+    @Override
+    public String toString() {
+        return name + "("+features+", "+rooms+")";
+    }
+    public Set<String> findAvailableRooms(ROOM_TYPE type, boolean groundFloor){
+        Set<String> freeRooms = new HashSet<>();
+        for (Map.Entry<String, Room> entry: rooms.entrySet()) {
+            Room room = entry.getValue();
+            String roomNumber = entry.getKey();
+            if (groundFloor && !room.onGroundFloor())
+                continue;
+            if (!room.isFull() &&
+                    (room.getRoomType() == ROOM_TYPE.EMPTY || room.getRoomType() == type)
+            ) freeRooms.add(roomNumber);
+        };
         return freeRooms;
+    }
+
+    public boolean hasAllFeatures(List<FEATURE> requested) {
+        return features.containsAll(requested);
     }
 
     public void addRoom(Room r) {
         rooms.put(r.getRoomNumber(),r);
     }
 
-    public Set<Integer> getRoomsNumbers() {
-        return rooms.keySet();
+    public Set<String> getRoomsNumbers() {
+        return new HashSet<>(rooms.keySet());
     }
 
-    public Room getRoom(int roomNumber) {
+    public Room getRoom(String roomNumber) {
         return rooms.get(roomNumber);
     }
 
@@ -59,16 +73,12 @@ public class Hall implements Serializable {
         return features.remove(feature);
     }
 
-    public ArrayList<FEATURE> getFeatures() {
-        return new ArrayList<>(features);
+    public Set<FEATURE> getFeatures() {
+        return new HashSet<>(features);
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

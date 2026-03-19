@@ -5,14 +5,15 @@ import uni.universityhalls.ROOM_TYPE;
 
 public class Employee extends Tenant{
     private static final long serialVersionUID = 1L;
-    public Employee (String name, int age, String email, Gender gender, int id){
+
+    public Employee (String name, int age, String email, Gender gender, String id){
         super(name,age,email,gender, id);
     }
     public Employee (Employee other) {
         super(other);
     }
     @Override
-    public ROOM_TYPE prefferedRoomType() {
+    public ROOM_TYPE preferredRoomType() {
         ROOM_TYPE result;
         switch( getGender()){
             case FEMALE: result = ROOM_TYPE.EMPLOYEE_FEMALE;
@@ -29,7 +30,7 @@ public class Employee extends Tenant{
     @Override
     public String toString() {
         return String.format(
-                "Employee(%s, %d, %s, %s, %s",
+                "Employee(%s, %d, %s, %s, %s)",
                 getName(),getAge(),getEmail(),getGender(),getId()
         );
     }
