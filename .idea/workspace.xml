@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="cleanup: Replce typeFor and related method with use of preferredRoomType of tenant, remove redundant imports, replace Boolean isFull with computed method isFull()">
-      <change afterPath="$PROJECT_DIR$/store1.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/StoreRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/exceptions/HallNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/exceptions/RoomFull.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/exceptions/RoomNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/exceptions/TenantRecordNotFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/people/Tenant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/testRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +19,8 @@
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -127,6 +110,8 @@
       <workItem from="1773766386863" duration="9164000" />
       <workItem from="1773828650242" duration="46407000" />
       <workItem from="1773926526302" duration="272000" />
+      <workItem from="1773927308313" duration="1792000" />
+      <workItem from="1774120974096" duration="13195000" />
     </task>
     <servers />
   </component>
