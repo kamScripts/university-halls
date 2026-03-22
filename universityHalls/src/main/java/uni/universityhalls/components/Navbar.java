@@ -9,18 +9,29 @@ import java.util.List;
 
 public class Navbar extends MenuBar {
 
-    Menu newMenu = new Menu("New");
-    Menu editMenu = new Menu("Edit");
-    Menu viewMenu = new Menu("View");
-    Menu toolsMenu = new Menu("Tools");
+    private final Menu newMenu = new Menu("New");
+    private final Menu editMenu = new Menu("Edit");
+    private final Menu viewMenu = new Menu("View");
+    private final Menu toolsMenu = new Menu("Tools");
     //New sub-menu
-    MenuItem studentMenu = new MenuItem("Student");
-    MenuItem employeeMenu = new MenuItem("Employee");
+    private final MenuItem newStudent = new MenuItem("Student");
+    private final MenuItem newEmployee = new MenuItem("Employee");
     //Edit sub-menu
+    private final MenuItem editHall = new MenuItem("Hall features");
+    private final MenuItem editRoom = new MenuItem("Room features");
     //View sub-menu
+    private final MenuItem viewHall = new MenuItem("Hall");
+    private final MenuItem viewTenant = new MenuItem("Tenant");
+    private final MenuItem viewRoom = new MenuItem("Room");
     //tools sub-menu
+    private final MenuItem roomFinder = new MenuItem("Room Finder");
+    private final MenuItem hallWizard = new MenuItem("Hall Wizard");
+    private final MenuItem backupCenter = new MenuItem("Backup Center");
     public Navbar(){
-        newMenu.getItems().addAll(studentMenu,employeeMenu);
+        newMenu.getItems().addAll(newStudent,newEmployee);
+        editMenu.getItems().addAll(editHall,editRoom);
+        viewMenu.getItems().addAll(viewHall,viewRoom,viewTenant);
+        toolsMenu.getItems().addAll(roomFinder, hallWizard, backupCenter);
         this.getMenus().addAll(newMenu,editMenu,viewMenu,toolsMenu);
     }
 
@@ -40,11 +51,43 @@ public class Navbar extends MenuBar {
         return toolsMenu;
     }
 
-    public MenuItem getStudentMenu() {
-        return studentMenu;
+    public MenuItem getNewStudent() {
+        return newStudent;
     }
 
-    public MenuItem getEmployeeMenu() {
-        return employeeMenu;
+    public MenuItem getNewEmployee() {
+        return newEmployee;
+    }
+
+    public MenuItem getEditHall() {
+        return editHall;
+    }
+
+    public MenuItem getEditRoom() {
+        return editRoom;
+    }
+
+    public MenuItem getViewHall() {
+        return viewHall;
+    }
+
+    public MenuItem getViewTenant() {
+        return viewTenant;
+    }
+
+    public MenuItem getViewRoom() {
+        return viewRoom;
+    }
+
+    public MenuItem getRoomFinder() {
+        return roomFinder;
+    }
+
+    public MenuItem getHallWizard() {
+        return hallWizard;
+    }
+
+    public MenuItem getBackupCenter() {
+        return backupCenter;
     }
 }
