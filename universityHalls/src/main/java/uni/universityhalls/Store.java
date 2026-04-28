@@ -40,7 +40,7 @@ public class Store implements Serializable {
         String hallName = record.getHallName();
         String roomNumber = record.getRoomNumber();
         registry.deregister(id);
-        Hall h = getHall(record.getHallName());
+        Hall h = getHall(hallName);
         Room r = h.getRoom(roomNumber);
          if (r == null) {
              throw new RoomNotFoundException(roomNumber);
@@ -49,11 +49,13 @@ public class Store implements Serializable {
     }
 
 
-    /**Finds a selection of available based on criteria like hall's features, room type, or ground floor laction
+    /**
+     * Finds a selection of available rooms based on criteria like hall's features,
+     * room type, or ground floor requirement.
      *
-     * @param requested: List<FEATURE> - Enum also property of Hall class.
-     * @param roomType: ROOM_TYPE - Enum
-     * @return Map: key=Hall, value=List
+     * @param requested: List<FEATURE> - List of constants, also property of Hall class.
+     * @param roomType: ROOM_TYPE - constant
+     * @return Map<String, Set<String>>: key=Hall-name, value= Set of available room numbers in this hall.
      */
     public Map<String, Set<String>> findRoom(List<FEATURE> requested,ROOM_TYPE roomType, boolean groundFloor) {
         // key= hallName : value= Set of available room numbers in this hall.
@@ -76,11 +78,15 @@ public class Store implements Serializable {
     public Hall getHall(String name) {
         return halls.get(name);
     }
-    public Tenant findTenant(String id) throws TenantRecordNotFound{
-        return registry.findById(id);
+    public Map<String, Hall> getAllHalls() {
+        return Map.copyOf(halls);
     }
+
     public TenantRecord getTenantRecord(String id) {
         return registry.getRecord(id);
+    }
+    public Map<String, TenantRecord> getAllTenantRecords (){
+        return Map.copyOf(registry.getRecords());
     }
 
 }

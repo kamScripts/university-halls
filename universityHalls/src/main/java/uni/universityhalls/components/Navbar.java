@@ -13,6 +13,8 @@ public class Navbar extends MenuBar {
     private final Menu editMenu = new Menu("Edit");
     private final Menu viewMenu = new Menu("View");
     private final Menu toolsMenu = new Menu("Tools");
+    private final Menu helpMenu = new Menu("Help");
+
     //New sub-menu
     private final MenuItem newStudent = new MenuItem("Student");
     private final MenuItem newEmployee = new MenuItem("Employee");
@@ -27,12 +29,17 @@ public class Navbar extends MenuBar {
     private final MenuItem roomFinder = new MenuItem("Room Finder");
     private final MenuItem hallWizard = new MenuItem("Hall Wizard");
     private final MenuItem backupCenter = new MenuItem("Backup Center");
+    //help sub-menu
+    private final MenuItem manualHelp = new MenuItem("Manual");
+    private final MenuItem aboutHelp = new MenuItem("About");
+
     public Navbar(){
         newMenu.getItems().addAll(newStudent,newEmployee);
         editMenu.getItems().addAll(editHall,editRoom);
         viewMenu.getItems().addAll(viewHall,viewRoom,viewTenant);
         toolsMenu.getItems().addAll(roomFinder, hallWizard, backupCenter);
-        this.getMenus().addAll(newMenu,editMenu,viewMenu,toolsMenu);
+        helpMenu.getItems().addAll(manualHelp,aboutHelp);
+        this.getMenus().addAll(newMenu,editMenu,viewMenu,toolsMenu, helpMenu);
     }
 
     public Menu getNewMenu() {
@@ -81,6 +88,18 @@ public class Navbar extends MenuBar {
 
     public MenuItem getRoomFinder() {
         return roomFinder;
+    }
+
+    public Menu getHelpMenu() {
+        return helpMenu;
+    }
+
+    public MenuItem getManualHelp() {
+        return manualHelp;
+    }
+
+    public MenuItem getAboutHelp() {
+        return aboutHelp;
     }
 
     public MenuItem getHallWizard() {

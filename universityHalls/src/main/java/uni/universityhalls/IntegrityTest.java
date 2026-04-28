@@ -13,15 +13,18 @@ public class IntegrityTest {
         String hallName = "hall01";
         List<FEATURE> requirements = new ArrayList<>();
 
-/*
+
         //Create Store to hold halls tenants
         Store store = new Store();
-
+        // Load from a drive
+        //Store store = StoreRepository.load("store1.dat");
         // Each store - different features and set of rooms
-        Hall h1 =new Hall(hallName);
-        h1.addRoom(new Room("1",2, 100, ROOM_TYPE.EMPTY, true));
-        h1.addRoom(new Room("2",2, 100, ROOM_TYPE.EMPTY, false));
-        store.addHall(h1);
+        Hall h2 =new Hall(hallName);
+        h2.addRoom(new Room("1",2, ROOM_TYPE.EMPTY, true));
+        h2.addRoom(new Room("2",2, ROOM_TYPE.EMPTY, false));
+        store.addHall(h2);
+        System.out.println(store.getHall("hall01"));
+        /*
         //System.out.println(store.getHall("hall01"));// Add hall with rooms.
         Student s1 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"1");
         Student s2 = new Student("student1", 20, "s@edu.co.uk", Gender.FEMALE,"2");
@@ -37,13 +40,16 @@ public class IntegrityTest {
         store.removeTenant("1");
         m = store.findRoom(requirements,s1.preferredRoomType(),true);
         System.out.println("findRoom room not-full: "+m.get(hallName));
-        StoreRepository.save(store, "store1.dat");
-*/
-        Store store = StoreRepository.load("store1.dat");
+        //StoreRepository.save(store, "store1.dat");
+
+
         //requirements.add(FEATURE.ALL_DAY_ASSISTANCE);
         Map<String, Set<String>>freeRooms=store.findRoom(requirements, ROOM_TYPE.EMPLOYEE_FEMALE, false);
         System.out.println(freeRooms.get(hallName));
         Room r = store.getHall(hallName).getRoom("4");
+        System.out.println(r);
+
+         */
 
     }
 }

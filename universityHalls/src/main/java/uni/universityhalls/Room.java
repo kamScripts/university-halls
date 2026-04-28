@@ -31,7 +31,6 @@ public class Room implements Serializable {
     public Room(String roomNumber, int capacity,  ROOM_TYPE roomType, boolean isGroundFloor) {
         this.roomNumber = roomNumber;
         this.capacity = capacity;
-        
         this.roomType = roomType;
         this.isGroundFloor = isGroundFloor;
         this.tenants = 0;
@@ -44,7 +43,6 @@ public class Room implements Serializable {
     public Room(Room other) {
         this.roomNumber = other.roomNumber;
         this.capacity = other.capacity;
-        
         this.roomType = other.roomType;
         this.isGroundFloor = other.isGroundFloor;
         this.tenants = other.tenants;

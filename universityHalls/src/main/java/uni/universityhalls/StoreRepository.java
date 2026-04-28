@@ -2,6 +2,9 @@ package uni.universityhalls;
 
 import java.io.*;
 
+/** Utility Class responsible for data persistence
+ *
+ */
 public class StoreRepository {
     public static void save(Store store, String filepath) {
         File f = new File(filepath);

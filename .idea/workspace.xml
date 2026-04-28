@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="cleanup: Replce typeFor and related method with use of preferredRoomType of tenant, remove redundant imports, replace Boolean isFull with computed method isFull()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/store1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/IntegrityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/StoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/StoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/TenantRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/HomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/Navbar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,35 +48,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.IntegrityTest.executor": "Run",
-    "Application.testRoom.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kg00k/Documents/university-halls/universityHalls/src/main/java/uni/universityhalls",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.IntegrityTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.testRoom.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kg00k/Documents/university-halls/universityHalls/src/main/java/uni/universityhalls&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.inline.completion&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="uni.universityhalls" />
@@ -122,7 +130,10 @@
       <workItem from="1773927308313" duration="1792000" />
       <workItem from="1774120974096" duration="13195000" />
       <workItem from="1774168022784" duration="3278000" />
-      <workItem from="1774171342092" duration="2383000" />
+      <workItem from="1774171342092" duration="6300000" />
+      <workItem from="1774448259397" duration="1977000" />
+      <workItem from="1777134182672" duration="2000" />
+      <workItem from="1777391751721" duration="6235000" />
     </task>
     <servers />
   </component>

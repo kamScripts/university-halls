@@ -30,4 +30,7 @@ public class TenantRegistry implements Serializable {
         return records.get(id);
     }
 
+    public Map<String, TenantRecord> getRecords() {
+        return records;
+    }
 }

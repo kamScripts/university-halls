@@ -23,7 +23,7 @@ public class App extends Application {
 
     final double WIDTH = 800;
     final double HEIGHT = 640;
-    final double NAVBAR_HEIGHT = 24;
+    final double NAVBAR_HEIGHT = 64;
     final double CONTENT_HEIGHT = HEIGHT-NAVBAR_HEIGHT;
 
     VBox root = new VBox();
@@ -39,11 +39,13 @@ public class App extends Application {
 
 
         content.setMinHeight(HEIGHT - NAVBAR_HEIGHT);
+        content.setMaxHeight(CONTENT_HEIGHT-NAVBAR_HEIGHT);
         content.getChildren().setAll(homePage);
         content.setAlignment(Pos.CENTER);
 
         root.getChildren().addAll(nav,content);
         root.setAlignment(Pos.TOP_LEFT);
+        root.setSpacing(40);
 
         Scene scene = new Scene(root,WIDTH,HEIGHT);
 
