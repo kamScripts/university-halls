@@ -80,5 +80,26 @@ public class Hall implements Serializable {
     public String getName() {
         return name;
     }
+    public int countEmptyRooms(){
+        int total = 0;
+        for (Room room: rooms.values()) {
+            if (room.isEmpty()) total++;
+        }
+        return total;
+    }
+    public int getTotalBeds () {
+        int total = 0;
+        for (Room room: rooms.values()) {
+            total+=room.getCapacity();
+        }
+        return total;
+    }
+    public int getEmptyBeds () {
+        int total = 0;
+        for (Room room: rooms.values()) {
+            total+=(room.getCapacity()-room.getCount());
+        }
+        return total;
+    }
 
 }

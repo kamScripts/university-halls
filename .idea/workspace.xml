@@ -8,7 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/store1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Hall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/PropertyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/PropertyManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +130,7 @@
       <workItem from="1777134182672" duration="2000" />
       <workItem from="1777391751721" duration="6235000" />
       <workItem from="1777405747471" duration="329000" />
-      <workItem from="1777460324059" duration="9982000" />
+      <workItem from="1777460324059" duration="18684000" />
     </task>
     <servers />
   </component>

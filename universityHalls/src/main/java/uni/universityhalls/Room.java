@@ -116,6 +116,10 @@ public class Room implements Serializable {
         return tenants>=capacity;
     }
 
+    public boolean isEmpty() {
+        return tenants==0;
+    }
+
     public boolean onGroundFloor() {
         return isGroundFloor;
     }
