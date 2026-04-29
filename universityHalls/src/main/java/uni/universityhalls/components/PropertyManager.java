@@ -5,10 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import uni.universityhalls.FEATURE;
-import uni.universityhalls.Hall;
-import uni.universityhalls.Store;
-import uni.universityhalls.StoreRepository;
+import uni.universityhalls.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +147,15 @@ public class PropertyManager extends VBox {
         roomForm.getChildren().addAll(header, roomNum, roomCombo, newRoom);
         container.getChildren().add(roomForm);
 
+        roomCombo.setOnAction(e -> {getRoomdetails(roomCombo.getValue(), hall);});
+
         return container;
+    }
+
+    private VBox getRoomdetails(String roomNum, Hall hall) {
+        Label roomNumLabel = new Label("Room "+roomNum);
+        Room room = hall.getRoom(roomNum);
+        TableView<Room> roomTable = new TableView<>();
     }
 
     private String getHallName() {
