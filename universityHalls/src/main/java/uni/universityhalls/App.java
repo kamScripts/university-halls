@@ -30,7 +30,6 @@ public class App extends Application {
     final String appTitle = "University Halls Management System";
     VBox root = new VBox();
     Navbar nav = new Navbar();
-    VBox content = new VBox();
     Label viewTitle = new Label(appTitle+" - Home");
 
     HomePage homePage = new HomePage(CONTENT_HEIGHT);
@@ -58,7 +57,7 @@ public class App extends Application {
 
         root.getChildren().addAll(nav,viewTitle,homePage);
         root.setAlignment(Pos.TOP_CENTER);
-        root.setSpacing(40);
+        root.setSpacing(16);
 
         Scene scene = new Scene(root,WIDTH,HEIGHT);
 

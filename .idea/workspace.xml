@@ -7,6 +7,8 @@
     <list default="true" id="8abc134e-ff41-448e-8188-e6dfa61ed064" name="Changes" comment="cleanup: Replce typeFor and related method with use of preferredRoomType of tenant, remove redundant imports, replace Boolean isFull with computed method isFull()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/store1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/PropertyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/universityHalls/src/main/java/uni/universityhalls/components/PropertyManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +130,7 @@
       <workItem from="1777391751721" duration="6235000" />
       <workItem from="1777405747471" duration="329000" />
       <workItem from="1777460324059" duration="21084000" />
-      <workItem from="1777484172083" duration="6248000" />
+      <workItem from="1777484172083" duration="13553000" />
     </task>
     <servers />
   </component>

@@ -81,6 +81,9 @@ public class Store implements Serializable {
     public Map<String, Hall> getAllHalls() {
         return Map.copyOf(halls);
     }
+    public void deleteHall(String hallName) {
+        halls.remove(hallName);
+    }
 
     public TenantRecord getTenantRecord(String id) {
         return registry.getRecord(id);
