@@ -2,10 +2,8 @@ package uni.universityhalls.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class HomePage extends VBox {
 
