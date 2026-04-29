@@ -10,6 +10,8 @@ import uni.universityhalls.Hall;
 import uni.universityhalls.Store;
 import uni.universityhalls.StoreRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class PropertyManager extends VBox {
@@ -56,61 +58,99 @@ public class PropertyManager extends VBox {
     }
 
     private VBox createHallSection(String hallName) {
-        VBox container = new VBox();
+        VBox container = new VBox(12);
+        container.setPadding(new Insets(16));
+
         Hall hall = store.getHall(hallName);
         Label label = new Label(hallName);
-        HBox stats = new HBox();
 
-        VBox roomStats = new VBox();
-        VBox bedsStats = new VBox();
-        //Room Stats
-        Label totalRooms = new Label();
-        int total = hall.getRoomsNumbers().size();
-        totalRooms.setText("Total rooms: " + total);
-        Label emptyRooms = new Label();
-        int empty = hall.countEmptyRooms();
-        emptyRooms.setText("Empty rooms: " + empty);
+        // --- Stats ---
+        HBox stats = new HBox(24);
+        VBox roomStats = new VBox(4);
+        VBox bedsStats = new VBox(4);
+
+        Label totalRooms = new Label("Total rooms: " + hall.getRoomsNumbers().size());
+        Label emptyRooms = new Label("Empty rooms: " + hall.countEmptyRooms());
         roomStats.getChildren().addAll(totalRooms, emptyRooms);
-        // Beds Stats
-        Label totalBeds = new Label();
-        Label emptyBeds = new Label();
-        int tBeds = hall.getTotalBeds();
-        totalBeds.setText("Total beds: " + tBeds);
-        int eBeds = hall.getEmptyBeds();
-        emptyBeds.setText("Empty beds: " + eBeds);
+
+        Label totalBeds = new Label("Total beds: " + hall.getTotalBeds());
+        Label emptyBeds = new Label("Empty beds: " + hall.getEmptyBeds());
         bedsStats.getChildren().addAll(totalBeds, emptyBeds);
+
         stats.getChildren().addAll(roomStats, bedsStats);
 
-        VBox hallFeatures = new VBox();
+        // --- Features ---
+        VBox hallFeatures = new VBox(8);
         Label featuresLabel = new Label("Hall features: ");
 
-        HBox featOptions = new HBox();
-        Label featureName = new Label("Feature name: ");
-        ComboBox <String> addFeature = new ComboBox<>();
-        Button addFeatureBtn = new Button("Add feature");
-        addFeature.setValue("--New Hall Feature--");
-        featOptions.getChildren().addAll(featureName,addFeature, addFeatureBtn);
+        HBox features = new HBox(8);
+        // Render any features the hall already has
+        for (FEATURE f : hall.getFeatures()) {
+            features.getChildren().add(new Text(f.name()));
+        }
 
+        HBox featOptions = new HBox(8);
+        Label featureName = new Label("Feature name: ");
+        ComboBox<String> featureCombo = new ComboBox<>();
+        Button addFeatureBtn = new Button("Add feature");
+        Button removeFeatureBtn = new Button("Remove feature");
 
         for (FEATURE feature : FEATURE.values()) {
-            addFeature.getItems().add(feature.name());
+            featureCombo.getItems().add(feature.name());
         }
-        HBox features = new HBox();
+        featureCombo.setValue("--Select feature--");
 
+        featOptions.getChildren().addAll(
+                featureName, featureCombo, addFeatureBtn, removeFeatureBtn
+        );
 
-        hallFeatures.getChildren().addAll(featOptions,featuresLabel, features);
+        hallFeatures.getChildren().addAll(featOptions, featuresLabel, features);
 
-        container.getChildren().addAll(label,stats,hallFeatures);
+        container.getChildren().addAll(label, stats, hallFeatures, createRoomSection(hall));
 
+        // --- Add feature ---
         addFeatureBtn.setOnAction(e -> {
-            if(!addFeature.getValue().equals("--New Hall Feature--") ){
+            String val = featureCombo.getValue();
+            if (val == null || val.equals("--Select feature--")) return;
 
-                features.getChildren().add(new Text(addFeature.getValue()));
+            FEATURE candidate = FEATURE.valueOf(val);
+            // Set add method returns false if value present
+            if (hall.addFeature(candidate)) {
+                features.getChildren().add(new Text(val));
+                StoreRepository.save(store, "store1.dat");
+            }
+        });
+
+        // --- Remove feature ---
+        removeFeatureBtn.setOnAction(e -> {
+            String val = featureCombo.getValue();
+            if (val == null || val.equals("--Select feature--")) return;
+
+            FEATURE candidate = FEATURE.valueOf(val);
+            // Collection removeIf method returns false if not present
+            if (hall.removeFeature(candidate)) {
+                features.getChildren().removeIf(node ->
+                        node instanceof Text && ((Text) node).getText().equals(val)
+                );
+                StoreRepository.save(store, "store1.dat");
             }
         });
 
         return container;
+    }
+    private VBox createRoomSection(Hall hall) {
+        VBox container = new VBox(12);
+        HBox roomForm = new HBox(24);
+        Label header = new Label("Room manager");
+        Label roomNum = new Label("Select room: ");
+        ComboBox<String> roomCombo = new ComboBox<>();
+        roomCombo.getItems().addAll(hall.getRoomsNumbers());
+        roomCombo.setValue("-- room no --");
+        Button newRoom = new Button("➕ New room");
+        roomForm.getChildren().addAll(header, roomNum, roomCombo, newRoom);
+        container.getChildren().add(roomForm);
 
+        return container;
     }
 
     private String getHallName() {
