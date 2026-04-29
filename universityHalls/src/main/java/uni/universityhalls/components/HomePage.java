@@ -8,10 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class HomePage extends VBox {
-    private final Label viewTitle = new Label("University Halls Management System - Home");
-    private final HBox navigation = new HBox();
-    private final HBox dashboard = new HBox();
-    private final Label dashLabel = new Label("DASHBOARD");
 
 
     private final ButtonWithImage findRoom = new ButtonWithImage("/images/search32x32.png", "Find Vacant Room");
@@ -19,39 +15,19 @@ public class HomePage extends VBox {
     private final ButtonWithImage propertyManager = new ButtonWithImage("/images/grid32x32.png", "Property Manager");
     public HomePage(double windowHeight){
 
-        viewTitle.setFont(Font.font("Ariel",20));
-        double sectionHeight = (windowHeight-viewTitle.getHeight())/2;
-        navigation.getChildren().addAll(findRoom, tenantsManager, propertyManager);
-        navigation.setAlignment(Pos.CENTER);
+        double sectionHeight = (windowHeight)/2;
+        this.getChildren().addAll(findRoom, tenantsManager, propertyManager);
 
-        navigation.setMinHeight(sectionHeight);
-        navigation.setMaxHeight(sectionHeight);
-        navigation.setSpacing(24);
 
-        dashboard.getChildren().add(dashLabel);
-        dashboard.setAlignment(Pos.CENTER);
-        dashboard.setMinHeight(sectionHeight);
-        dashboard.setMaxHeight(sectionHeight);
+        this.setMinHeight(sectionHeight);
+        this.setMaxHeight(sectionHeight);
+        this.setSpacing(48);
 
-        this.getChildren().addAll(viewTitle,navigation,dashboard);
-        this.setAlignment(Pos.TOP_LEFT);
+        this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(16));
 
-
-
     }
 
-    public HBox getNavigation() {
-        return navigation;
-    }
-
-    public HBox getDashboard() {
-        return dashboard;
-    }
-
-    public Label getDashLabel() {
-        return dashLabel;
-    }
 
     public ButtonWithImage getFindRoom() {
         return findRoom;
