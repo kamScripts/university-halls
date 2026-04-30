@@ -27,6 +27,7 @@ public class PropertyManager extends VBox {
         Label navLabel = new Label("Select hall: ");
         Button newHallBtn = new Button("➕ New hall");
         Button deleteHallBtn = new Button("❌ delete hall");
+        deleteHallBtn.setBackground(new Background(new BackgroundFill(Color.INDIANRED, null, null)));
         hallNav.getChildren().addAll(navLabel,selectHall, newHallBtn, deleteHallBtn, returnHome);
         hallNav.setPadding(new Insets(24));
         hallNav.setBorder(new Border(new BorderStroke(
@@ -55,6 +56,14 @@ public class PropertyManager extends VBox {
         });
         deleteHallBtn.setOnAction(e -> {
             String hallName = selectHall.getValue();
+            Alert confirm = new Alert(
+                    Alert.AlertType.CONFIRMATION,
+                    "Remove hall " + hallName + "?",
+                    ButtonType.OK, ButtonType.CANCEL
+            );
+            confirm.setHeaderText(null);
+            Optional<ButtonType> response = confirm.showAndWait();
+            if (response.isEmpty() || response.get() != ButtonType.OK) return;
             store.deleteHall(hallName);
             // ----- Override current file |-> make copy or db ? -----
             StoreRepository.save(store, "store1.dat");
@@ -116,7 +125,7 @@ public class PropertyManager extends VBox {
             featureCombo.getItems().add(feature.name());
         }
         // placeholder
-        featureCombo.setValue("--Select feature--");
+        featureCombo.setPromptText("--Select feature--");
 
         featOptions.getChildren().addAll(
                 featureName, featureCombo, addFeatureBtn, removeFeatureBtn
@@ -129,7 +138,7 @@ public class PropertyManager extends VBox {
         // --- Add feature ---
         addFeatureBtn.setOnAction(e -> {
             String val = featureCombo.getValue();
-            if (val == null || val.equals("--Select feature--")) return;
+            if (val == null) return;
 
             FEATURE candidate = FEATURE.valueOf(val);
             // Set add method returns false if value present
@@ -142,7 +151,7 @@ public class PropertyManager extends VBox {
         // --- Remove feature ---
         removeFeatureBtn.setOnAction(e -> {
             String val = featureCombo.getValue();
-            if (val == null || val.equals("--Select feature--")) return;
+            if (val == null) return;
 
             FEATURE candidate = FEATURE.valueOf(val);
             // Collection removeIf method returns false if not present
@@ -166,7 +175,7 @@ public class PropertyManager extends VBox {
         Label roomNum = new Label("Select room: ");
         ComboBox<String> roomCombo = new ComboBox<>();
         roomCombo.getItems().addAll(hall.getRoomsNumbers());
-        roomCombo.setValue("-- room no --");
+        roomCombo.setPromptText("-- room no --");
         Button newRoom = new Button("➕ New room");
         roomForm.getChildren().addAll( roomNum, roomCombo, newRoom);
 
@@ -177,7 +186,7 @@ public class PropertyManager extends VBox {
         //--- Room select event listener - show room detail view ---
         roomCombo.setOnAction(e -> {
             String selected = roomCombo.getValue();
-            if (selected == null || selected.equals("-- room no --")) return;
+            if (selected == null) return;
             detailView.getChildren().setAll(buildRoomDetails(selected, hall));
         });
         //--- Add new room to current hall ---

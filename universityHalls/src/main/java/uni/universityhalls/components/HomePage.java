@@ -8,27 +8,21 @@ import javafx.scene.layout.VBox;
 public class HomePage extends VBox {
 
 
-    private final ButtonWithImage findRoom = new ButtonWithImage("/images/search32x32.png", "Find Vacant Room");
     private final ButtonWithImage tenantsManager = new ButtonWithImage("/images/users32x32.png", "Tenants Manager");
     private final ButtonWithImage propertyManager = new ButtonWithImage("/images/grid32x32.png", "Property Manager");
     public HomePage(double windowHeight){
 
         double sectionHeight = (windowHeight)/2;
-        this.getChildren().addAll(findRoom, tenantsManager, propertyManager);
+        this.getChildren().addAll(tenantsManager, propertyManager);
 
 
         this.setMinHeight(sectionHeight);
         this.setMaxHeight(sectionHeight);
         this.setSpacing(48);
 
-        this.setAlignment(Pos.TOP_CENTER);
+        this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(16));
 
-    }
-
-
-    public ButtonWithImage getFindRoom() {
-        return findRoom;
     }
 
     public ButtonWithImage getTenantsManager() {

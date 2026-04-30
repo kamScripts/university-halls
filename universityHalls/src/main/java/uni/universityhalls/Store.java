@@ -41,6 +41,7 @@ public class Store implements Serializable {
         String roomNumber = record.getRoomNumber();
         registry.deregister(id);
         Hall h = getHall(hallName);
+        if (h == null) throw new HallNotFoundException(hallName);
         Room r = h.getRoom(roomNumber);
          if (r == null) {
              throw new RoomNotFoundException(roomNumber);

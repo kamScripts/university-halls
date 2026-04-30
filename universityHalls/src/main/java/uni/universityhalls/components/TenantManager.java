@@ -13,6 +13,7 @@ import uni.universityhalls.TenantRecord;
 import uni.universityhalls.exceptions.HallNotFoundException;
 import uni.universityhalls.exceptions.RoomFull;
 import uni.universityhalls.exceptions.RoomNotFoundException;
+import uni.universityhalls.exceptions.TenantRecordNotFound;
 import uni.universityhalls.people.Employee;
 import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
@@ -37,7 +38,7 @@ public class TenantManager extends VBox {
     private final Button searchButton = new Button("Search");
     private final VBox searchByIdBox = new VBox(16);
 
-    // Add tenant form
+    // Add tenant form TODO: add hall-features combobox
     private final Label addTenantLabel = new Label("Add Tenant");
     private final ToggleGroup tenantTypeGroup = new ToggleGroup();
     private final RadioButton studentRadio = new RadioButton("Student");
@@ -51,7 +52,7 @@ public class TenantManager extends VBox {
     private final Button findRoomsBtn = new Button("Find rooms");
     private final ComboBox<String> addHallCombo = new ComboBox<>();
     private final ComboBox<String> addRoomCombo = new ComboBox<>();
-    private final Button addTenantBtn = new Button("Add Tenant");
+    private final Button addTenantBtn = new Button("➕ Add Tenant");
     private final VBox addTenantBox = new VBox(6);
 
     // Holds the candidate tenant between "findAvailableRooms" and "addTenant"
@@ -59,6 +60,11 @@ public class TenantManager extends VBox {
     // Cache of available rooms per hall, populated by Hall.findAvailableRooms(preferredType, isGroundFloor)
     private Map<String, Set<String>> availableRooms = new HashMap<>();
 
+    // Delete tenant by ID
+    private final Label deleteIdLabel = new Label("Delete Tenant");
+    private final TextField deleteIdField = new TextField();
+    private final Button deleteIdBtn = new Button("❌ Delete");
+    private final VBox deleteByIdBox = new VBox(16);
 
     // Actions
     private final HBox actionsBox = new HBox(64);
@@ -78,6 +84,11 @@ public class TenantManager extends VBox {
         displayFormBox.getChildren().addAll(displayLabel, showTenants, showStudents, showEmployees, submitButton);
         searchByIdBox.getChildren().addAll(searchIdLabel, tenantId, searchButton);
         tenantId.setPromptText("Tenant ID");
+        //delete tenant
+        deleteIdBtn.setBackground(new Background(new BackgroundFill(Color.INDIANRED, null, null)));
+        deleteIdField.setPromptText("Tenant ID");
+        deleteByIdBox.getChildren().addAll(deleteIdLabel, deleteIdField, deleteIdBtn);
+
         //New Tenant Form
         tenantTypeGroup.getToggles().addAll(studentRadio, employeeRadio);
         studentRadio.setSelected(true);
@@ -102,7 +113,7 @@ public class TenantManager extends VBox {
                 addHallCombo, addRoomCombo, addTenantBtn
         );
 
-        actionsBox.getChildren().addAll(addTenantBox,displayFormBox, searchByIdBox);
+        actionsBox.getChildren().addAll(addTenantBox,displayFormBox, searchByIdBox, deleteByIdBox);
         actionsBox.setAlignment(Pos.CENTER);
         actionsBox.setPadding(new Insets(16));
         actionsBox.setBorder(new Border(new BorderStroke(
@@ -115,6 +126,35 @@ public class TenantManager extends VBox {
         this.getChildren().addAll(returnHome, actionsBox, resultsBox);
         this.setPadding(new Insets(24));
         showRecords(store.getAllTenantRecords().values());
+
+        // Delete tenant by ID
+        deleteIdBtn.setOnAction(e -> {
+            String id = deleteIdField.getText().trim();
+            if (id.isEmpty()) return;
+
+            // Confirm before deleting
+            Alert confirm = new Alert(
+                    Alert.AlertType.CONFIRMATION,
+                    "Delete tenant " + id + "?",
+                    ButtonType.OK, ButtonType.CANCEL
+            );
+            confirm.setHeaderText(null);
+            Optional<ButtonType> response = confirm.showAndWait();
+            if (response.isEmpty() || response.get() != ButtonType.OK) return;
+
+            try {
+                store.removeTenant(id);
+                StoreRepository.save(store, "store1.dat");
+                deleteIdField.clear();
+                showRecords(store.getAllTenantRecords().values());
+            } catch (TenantRecordNotFound ex) {
+                showError("No tenant with ID: " + id);
+            } catch (RoomNotFoundException ex) {
+                showError("Room not found: " + ex.getMessage());
+            } catch (HallNotFoundException ex) {
+                showError("Hall not found: " + ex.getMessage());
+            }
+        });
 
         // Search tenant by ID
         searchButton.setOnAction(e -> {
@@ -173,7 +213,7 @@ public class TenantManager extends VBox {
                 showRecords(store.getAllTenantRecords().values());
             } catch (HallNotFoundException | RoomNotFoundException | RoomFull ex) {
                 showError(ex.getMessage());
-            } catch (Exception ex) {}
+            }
         });
         // New Tenant Form hall combobox - When hall combobox changes,
         // show only the rooms available in that hall (results of store.findRooms)

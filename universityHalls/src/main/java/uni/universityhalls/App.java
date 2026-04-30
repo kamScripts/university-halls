@@ -34,7 +34,6 @@ public class App extends Application {
     Label viewTitle = new Label(appTitle+" - Home");
 
     HomePage homePage = new HomePage(CONTENT_HEIGHT);
-    Button findBtn = homePage.getFindRoom();
     Button tenantsBtn = homePage.getTenantsManager();
     Button propertyBtn = homePage.getPropertyManager();
 
