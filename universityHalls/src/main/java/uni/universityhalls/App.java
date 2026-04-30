@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import uni.universityhalls.components.HomePage;
 import uni.universityhalls.components.Navbar;
 import uni.universityhalls.components.PropertyManager;
+import uni.universityhalls.components.TenantManager;
 
 
 /**
@@ -71,6 +72,16 @@ public class App extends Application {
             returnBtn.setOnAction(event-> returnHome(manager)
             );
 
+
+        });
+        // Open Tenants manager (Add, delete view tenants)
+        tenantsBtn.setOnMouseClicked(e -> {
+            root.getChildren().remove(homePage);
+            viewTitle.setText(appTitle + " - Tenant Manager");
+            TenantManager manager = new TenantManager(store);
+            root.getChildren().add(manager);
+            Button returnBtn = manager.getReturnHome();
+            returnBtn.setOnAction(event-> returnHome(manager));
 
         });
 
