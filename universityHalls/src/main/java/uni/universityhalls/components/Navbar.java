@@ -9,11 +9,11 @@ import java.util.List;
 
 public class Navbar extends MenuBar {
 
-    private final Menu newMenu = new Menu("New");
-    private final Menu editMenu = new Menu("Edit");
-    private final Menu viewMenu = new Menu("View");
+    private final Menu newMenu   = new Menu("New");
+    private final Menu editMenu  = new Menu("Edit");
+    private final Menu viewMenu  = new Menu("View");
     private final Menu toolsMenu = new Menu("Tools");
-    private final Menu helpMenu = new Menu("Help");
+    private final Menu helpMenu  = new Menu("Help");
 
     //New sub-menu
     private final MenuItem newStudent = new MenuItem("Student");
@@ -40,6 +40,8 @@ public class Navbar extends MenuBar {
         toolsMenu.getItems().addAll(roomFinder, hallWizard, backupCenter);
         helpMenu.getItems().addAll(manualHelp,aboutHelp);
         this.getMenus().addAll(newMenu,editMenu,viewMenu,toolsMenu, helpMenu);
+        //NAVBAR UNDER CONSTRUCTION
+        this.setDisable(true);
     }
 
     public Menu getNewMenu() {

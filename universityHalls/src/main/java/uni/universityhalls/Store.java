@@ -30,6 +30,7 @@ public class Store implements Serializable {
 
         if (registry.register(tenant, hallName, roomNumber)) {
             room.addTenant();
+            room.setRoomType(tenant.preferredRoomType());
             return true;
         }
         return false;
