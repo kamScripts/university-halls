@@ -10,12 +10,12 @@ import javafx.scene.paint.Color;
 import uni.universityhalls.Store;
 import uni.universityhalls.TenantRecord;
 import uni.universityhalls.people.Employee;
+import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
+import uni.universityhalls.people.Tenant;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class TenantManager extends VBox {
     private final Store store;
@@ -32,6 +32,28 @@ public class TenantManager extends VBox {
     private final TextField tenantId = new TextField();
     private final Button searchButton = new Button("Search");
     private final VBox searchByIdBox = new VBox(16);
+
+    // Add tenant form
+    private final Label addTenantLabel = new Label("Add Tenant");
+    private final ToggleGroup tenantTypeGroup = new ToggleGroup();
+    private final RadioButton studentRadio = new RadioButton("Student");
+    private final RadioButton employeeRadio = new RadioButton("Employee");
+    private final TextField newIdField = new TextField();
+    private final TextField newNameField = new TextField();
+    private final TextField newAgeField = new TextField();
+    private final TextField newEmailField = new TextField();
+    private final ComboBox<Gender> genderCombo = new ComboBox<>();
+    private final CheckBox groundFloorOnly = new CheckBox("Ground floor only");
+    private final Button findRoomsBtn = new Button("Find rooms");
+    private final ComboBox<String> addHallCombo = new ComboBox<>();
+    private final ComboBox<String> addRoomCombo = new ComboBox<>();
+    private final Button addTenantBtn = new Button("Add Tenant");
+    private final VBox addTenantBox = new VBox(6);
+
+    // Holds the candidate tenant between "findAvailableRooms" and "addTenant"
+    private Tenant pendingTenant = null;
+    // Cache of available rooms per hall, populated by Hall.findAvailableRooms(preferredType, isGroundFloor)
+    private Map<String, Set<String>> availableRooms = new HashMap<>();
 
 
     // Actions
