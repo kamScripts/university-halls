@@ -8,7 +8,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import uni.universityhalls.Store;
+import uni.universityhalls.StoreRepository;
 import uni.universityhalls.TenantRecord;
+import uni.universityhalls.exceptions.HallNotFoundException;
+import uni.universityhalls.exceptions.RoomFull;
+import uni.universityhalls.exceptions.RoomNotFoundException;
 import uni.universityhalls.people.Employee;
 import uni.universityhalls.people.Gender;
 import uni.universityhalls.people.Student;
@@ -74,7 +78,31 @@ public class TenantManager extends VBox {
         displayFormBox.getChildren().addAll(displayLabel, showTenants, showStudents, showEmployees, submitButton);
         searchByIdBox.getChildren().addAll(searchIdLabel, tenantId, searchButton);
         tenantId.setPromptText("Tenant ID");
-        actionsBox.getChildren().addAll(displayFormBox, searchByIdBox);
+        //New Tenant Form
+        tenantTypeGroup.getToggles().addAll(studentRadio, employeeRadio);
+        studentRadio.setSelected(true);
+        HBox typeRow = new HBox(8, studentRadio, employeeRadio);
+
+        newIdField.setPromptText("ID");
+        newNameField.setPromptText("Name");
+        newAgeField.setPromptText("Age");
+        newEmailField.setPromptText("Email");
+        genderCombo.getItems().addAll(Gender.values());
+        genderCombo.setPromptText("Gender");
+
+        addHallCombo.setPromptText("Hall");
+        addRoomCombo.setPromptText("Room");
+        addHallCombo.setDisable(true);
+        addRoomCombo.setDisable(true);
+        addTenantBtn.setDisable(true);
+        addTenantBox.getChildren().addAll(
+                addTenantLabel, typeRow,
+                newIdField, newNameField, newAgeField, newEmailField,
+                genderCombo, groundFloorOnly, findRoomsBtn,
+                addHallCombo, addRoomCombo, addTenantBtn
+        );
+
+        actionsBox.getChildren().addAll(addTenantBox,displayFormBox, searchByIdBox);
         actionsBox.setAlignment(Pos.CENTER);
         actionsBox.setPadding(new Insets(16));
         actionsBox.setBorder(new Border(new BorderStroke(
@@ -87,6 +115,7 @@ public class TenantManager extends VBox {
         this.getChildren().addAll(returnHome, actionsBox, resultsBox);
         this.setPadding(new Insets(24));
         showRecords(store.getAllTenantRecords().values());
+
         // Search tenant by ID
         searchButton.setOnAction(e -> {
             String id = tenantId.getText().trim();
@@ -99,6 +128,63 @@ public class TenantManager extends VBox {
             }
             showRecords(results);
         });
+        // Find room
+        findRoomsBtn.setOnAction(e -> {
+            Tenant tenant = buildTenantFromForm();
+            if (tenant == null) return;
+
+            // FEATURE IMPROVEMENT: Add hall features filter to the form, for now pass empty list
+            availableRooms = store.findRoom(
+                    Collections.emptyList(),
+                    tenant.preferredRoomType(),
+                    groundFloorOnly.isSelected()
+            );
+
+            if (availableRooms.isEmpty()) {
+                showError("No available rooms match this tenant");
+                return;
+            }
+
+            pendingTenant = tenant;
+            addHallCombo.getItems().setAll(availableRooms.keySet());
+            addHallCombo.setDisable(false);
+            addRoomCombo.setDisable(false);
+            addTenantBtn.setDisable(false);
+        });
+        //Submit Form
+        addTenantBtn.setOnAction(e -> {
+            if (pendingTenant == null) return;
+
+            String hall = addHallCombo.getValue();
+            String room = addRoomCombo.getValue();
+            if (hall == null || room == null) {
+                showError("Please pick a hall and room");
+                return;
+            }
+
+            try {
+                boolean added = store.addTenant(pendingTenant, hall, room);
+                if (!added) {
+                    showError("A tenant with that ID already exists");
+                    return;
+                }
+                StoreRepository.save(store, "store1.dat");
+                clearAddForm();
+                showRecords(store.getAllTenantRecords().values());
+            } catch (HallNotFoundException | RoomNotFoundException | RoomFull ex) {
+                showError(ex.getMessage());
+            } catch (Exception ex) {}
+        });
+        // New Tenant Form hall combobox - When hall combobox changes,
+        // show only the rooms available in that hall (results of store.findRooms)
+        addHallCombo.setOnAction(e -> {
+            String selectedHall = addHallCombo.getValue();
+            addRoomCombo.getItems().clear();
+            if (selectedHall != null && availableRooms.containsKey(selectedHall)) {
+                addRoomCombo.getItems().addAll(availableRooms.get(selectedHall));
+            }
+        });
+
         // Display tenants based on type
         submitButton.setOnAction(e -> {
             Toggle selected = displayGroup.getSelectedToggle();
@@ -175,6 +261,56 @@ public class TenantManager extends VBox {
         );
         resultsTable.setPlaceholder(new Label("No tenants to show"));
         resultsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+    private Tenant buildTenantFromForm() {
+        String id = newIdField.getText().trim();
+        String name = newNameField.getText().trim();
+        String email = newEmailField.getText().trim();
+        String ageText = newAgeField.getText().trim();
+        Gender gender = genderCombo.getValue();
+
+        if (id.isEmpty() || name.isEmpty() || email.isEmpty() || ageText.isEmpty() || gender == null) {
+            showError("Please fill in all tenant fields");
+            return null;
+        }
+
+        int age;
+        try {
+            age = Integer.parseInt(ageText);
+        } catch (NumberFormatException ex) {
+            showError("Age must be a number");
+            return null;
+        }
+
+        if (tenantTypeGroup.getSelectedToggle() == studentRadio) {
+            return new Student(name, age, email, gender, id);
+        } else {
+            return new Employee(name, age, email, gender, id);
+        }
+    }
+    // Reset Form inputs
+    private void clearAddForm() {
+        newIdField.clear();
+        newNameField.clear();
+        newAgeField.clear();
+        newEmailField.clear();
+        genderCombo.setValue(null);
+        groundFloorOnly.setSelected(false);
+        addHallCombo.getItems().clear();
+        addHallCombo.setValue(null);
+        addRoomCombo.getItems().clear();
+        addRoomCombo.setValue(null);
+        addHallCombo.setDisable(true);
+        addRoomCombo.setDisable(true);
+        addTenantBtn.setDisable(true);
+        studentRadio.setSelected(true);
+        pendingTenant = null;
+        availableRooms.clear();
     }
 
     public Button getReturnHome() {
