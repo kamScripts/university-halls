@@ -1,5 +1,7 @@
 package uni.universityhalls.components;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -10,6 +12,7 @@ import uni.universityhalls.TenantRecord;
 import uni.universityhalls.people.Employee;
 import uni.universityhalls.people.Student;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,16 +29,11 @@ public class TenantManager extends VBox {
     private final VBox displayFormBox = new VBox(8);
     //Search Tenants by ID
     private final Label searchIdLabel = new Label("Search by ID");
-    private final TextField tenantId = new TextField("Tenant ID");
+    private final TextField tenantId = new TextField();
     private final Button searchButton = new Button("Search");
     private final VBox searchByIdBox = new VBox(16);
 
-    //Search tenants assigned to an accommodation
-    private final Label searchByLocationLabel = new Label("Search By Location");
-    private final ComboBox<String> hallName = new ComboBox<>();
-    private final ComboBox<String> roomNumber = new ComboBox<>();
-    private final Button submitLocationBtn = new Button("Search");
-    private final VBox searchByLocationBox = new VBox(8);
+
     // Actions
     private final HBox actionsBox = new HBox(64);
 
@@ -53,10 +51,8 @@ public class TenantManager extends VBox {
         displayGroup.getToggles().addAll(showTenants, showStudents, showEmployees);
         displayFormBox.getChildren().addAll(displayLabel, showTenants, showStudents, showEmployees, submitButton);
         searchByIdBox.getChildren().addAll(searchIdLabel, tenantId, searchButton);
-        searchByLocationBox.getChildren().addAll(searchByLocationLabel, hallName, roomNumber, submitLocationBtn);
-        hallName.setValue("Hall Name");
-        roomNumber.setValue("Room Number");
-        actionsBox.getChildren().addAll(displayFormBox, searchByIdBox, searchByLocationBox);
+        tenantId.setPromptText("Tenant ID");
+        actionsBox.getChildren().addAll(displayFormBox, searchByIdBox);
         actionsBox.setAlignment(Pos.CENTER);
         actionsBox.setPadding(new Insets(16));
         actionsBox.setBorder(new Border(new BorderStroke(
@@ -68,10 +64,22 @@ public class TenantManager extends VBox {
         buildResultsTable();
         this.getChildren().addAll(returnHome, actionsBox, resultsBox);
         this.setPadding(new Insets(24));
+        showRecords(store.getAllTenantRecords().values());
+        // Search tenant by ID
+        searchButton.setOnAction(e -> {
+            String id = tenantId.getText().trim();
+            if (id.isEmpty()) return;
 
+            TenantRecord record = store.getTenantRecord(id);
+            List<TenantRecord> results = new ArrayList<>();
+            if (record != null) {
+                results.add(record);
+            }
+            showRecords(results);
+        });
+        // Display tenants based on type
         submitButton.setOnAction(e -> {
             Toggle selected = displayGroup.getSelectedToggle();
-            if (selected == null) return;
 
             Collection<TenantRecord> all = store.getAllTenantRecords().values();
             List<TenantRecord> filtered = new ArrayList<>();
@@ -105,31 +113,46 @@ public class TenantManager extends VBox {
     private void buildResultsTable() {
         TableColumn<TenantRecord, String> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(cell ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getTenant().getId()));
-
-        TableColumn<TenantRecord, String> nameCol = new TableColumn<>("Name");
-        nameCol.setCellValueFactory(cell ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getTenant().getName()));
+                new SimpleStringProperty(cell.getValue().getTenant().getId()));
 
         TableColumn<TenantRecord, String> typeCol = new TableColumn<>("Type");
         typeCol.setCellValueFactory(cell ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getTenant().getClass().getSimpleName()));
+                new SimpleStringProperty(cell.getValue().getTenant().getClass().getSimpleName()));
+
+        TableColumn<TenantRecord, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getTenant().getName()));
+
+        TableColumn<TenantRecord, Integer> ageCol = new TableColumn<>("Age");
+        ageCol.setCellValueFactory(cell ->
+                new SimpleIntegerProperty(cell.getValue().getTenant().getAge()).asObject());
+
+        TableColumn<TenantRecord, String> emailCol = new TableColumn<>("Email");
+        emailCol.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getTenant().getEmail()));
+
+        TableColumn<TenantRecord, String> genderCol = new TableColumn<>("Gender");
+        genderCol.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getTenant().getGender().name()));
 
         TableColumn<TenantRecord, String> hallCol = new TableColumn<>("Hall");
         hallCol.setCellValueFactory(cell ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getHallName()));
+                new SimpleStringProperty(cell.getValue().getHallName()));
 
         TableColumn<TenantRecord, String> roomCol = new TableColumn<>("Room");
         roomCol.setCellValueFactory(cell ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getRoomNumber()));
+                new SimpleStringProperty(cell.getValue().getRoomNumber()));
 
-        resultsTable.getColumns().addAll(idCol, nameCol, typeCol, hallCol, roomCol);
+        TableColumn<TenantRecord, String> createdCol = new TableColumn<>("Joined");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        createdCol.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getTenant().getCreatedAt().format(fmt)));
+
+        resultsTable.getColumns().addAll(
+                idCol, typeCol, nameCol, ageCol, emailCol, genderCol, hallCol, roomCol, createdCol
+        );
         resultsTable.setPlaceholder(new Label("No tenants to show"));
+        resultsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     public Button getReturnHome() {
