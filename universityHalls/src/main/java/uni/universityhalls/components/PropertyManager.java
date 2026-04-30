@@ -98,7 +98,14 @@ public class PropertyManager extends VBox {
         }
         // --- Hall's features menu ---
         HBox featOptions = new HBox(16);
-                featOptions.setPadding(new Insets(24,8,24,8));
+        featOptions.setPadding(new Insets(8,8,8,8));
+        featOptions.setBorder(new Border(new BorderStroke(
+                Color.GRAY,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(2)
+        )));
+        featOptions.setAlignment(Pos.CENTER);
         Label featureName = new Label("Hall feature name: ");
         featureName.setFont(new Font("Arial", 12));
         ComboBox<String> featureCombo = new ComboBox<>();
@@ -152,21 +159,21 @@ public class PropertyManager extends VBox {
     private VBox createRoomSection(Hall hall) {
         VBox container = new VBox(12);
         //-- Room Navigation ---
-        HBox roomForm = new HBox(16);
+        HBox roomForm = new HBox(12);
         roomForm.setAlignment(Pos.CENTER);
         Label header = new Label("Room manager");
-        header.setFont(new Font("Arial", 12));
+        header.setFont(new Font("Arial", 16));
         Label roomNum = new Label("Select room: ");
         ComboBox<String> roomCombo = new ComboBox<>();
         roomCombo.getItems().addAll(hall.getRoomsNumbers());
         roomCombo.setValue("-- room no --");
         Button newRoom = new Button("➕ New room");
-        roomForm.getChildren().addAll(header, roomNum, roomCombo, newRoom);
+        roomForm.getChildren().addAll( roomNum, roomCombo, newRoom);
 
         //--- Container for the details panel, refreshed on change---
         VBox detailView = new VBox();
 
-        container.getChildren().addAll(roomForm, detailView);
+        container.getChildren().addAll(header,roomForm, detailView);
         //--- Room select event listener - show room detail view ---
         roomCombo.setOnAction(e -> {
             String selected = roomCombo.getValue();
@@ -197,8 +204,8 @@ public class PropertyManager extends VBox {
     }
 
     private VBox buildRoomDetails(String roomNum, Hall hall) {
+        // --- room details container ---
         VBox box = new VBox(8);
-        box.setPadding(new Insets(12, 0, 0, 0));
 
         Room room = hall.getRoom(roomNum);
         if (room == null) return box;
@@ -215,6 +222,7 @@ public class PropertyManager extends VBox {
         Spinner<Integer> capacitySpinner = new Spinner<>(1, 10, room.getCapacity());
         Button saveCapacity = new Button("Update");
         capacityRow.getChildren().addAll(capLabel, capacitySpinner, saveCapacity);
+
 
         HBox typeRow = new HBox(8);
         Label typeLabel = new Label("Room type: ");
@@ -235,13 +243,14 @@ public class PropertyManager extends VBox {
         // --- Handlers ---
         saveCapacity.setOnAction(e -> {
             int newCap = capacitySpinner.getValue();
-            // Don't shrink below current occupancy
+            // Restrict capacity shrink below current occupancy
             if (newCap < room.getCount()) {
                 capacitySpinner.getValueFactory().setValue(room.getCapacity());
                 return;
             }
             room.setCapacity(newCap);
             StoreRepository.save(store, "store1.dat");
+
             occupancy.setText("Occupancy: " + room.getCount() + " / " + room.getCapacity());
         });
 

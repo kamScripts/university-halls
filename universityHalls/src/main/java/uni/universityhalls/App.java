@@ -78,7 +78,7 @@ public class App extends Application {
         stage.setTitle("University Halls Manager");
         stage.show();
     }
-    //Remove current section - child of VBox and replace
+    //Remove current view, and install home view
     private void returnHome(VBox elToRemove) {
         root.getChildren().remove(elToRemove);
         viewTitle.setText(appTitle + " - Home");
